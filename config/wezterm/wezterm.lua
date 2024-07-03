@@ -83,8 +83,10 @@ config.background = {
 				segment_smoothness = 0.025,
 			},
 		},
-		width = "100%",
-		height = "100%",
+		width = "110%",
+		height = "110%",
+		vertical_align = "Middle",
+		horizontal_align = "Center",
 	},
 	{
 		-- My beloved cat Niko
@@ -95,7 +97,7 @@ config.background = {
 		repeat_y = "NoRepeat",
 		vertical_align = "Bottom",
 		horizontal_align = "Right",
-		vertical_offset = "-2cell",
+		vertical_offset = "-2.25cell",
 	},
 }
 
