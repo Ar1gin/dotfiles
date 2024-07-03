@@ -63,5 +63,16 @@ vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")     -- move line up(n)
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")     -- move line down(n)
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+local buffer_action = function(prompt, command)
+	return function()
+		vim.ui.input({ prompt = prompt }, function(input)
+			vim.cmd(command .. input)
+		end)
+	end
+end
+vim.keymap.set("n", "<leader>bn", buffer_action("New buffer", ":edit "))
+vim.keymap.set("n", "<leader>bv", buffer_action("Vsplit: ", ":vnew "))
+vim.keymap.set("n", "<leader>bs", buffer_action("Hsplit: ", ":new "))
+vim.keymap.set("n", "<leader>br", buffer_action("Rename: ", ":file "))
 
 require("lazy").setup("plugins")
