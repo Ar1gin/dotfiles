@@ -76,7 +76,7 @@ M.pad_window = function(win)
 		vim.api.nvim_set_option_value("statuscolumn",
 			"%#Normal#%{\"" ..
 			-- Sometimes I feel like I shouldn't be allowed to touch computers...
-			string.rep("⠀", total_pad) .. "\"}%#LineNr# %2.2s%4.4l%#LinePad#%{v:virtnum<=0?\"🮇\":\"⠀⠀⠀⠀🮇\"}",
+			string.rep("⠀", total_pad) .. "\"}%#LineNr# %2.2s%4.4l%#LinePad#%{v:virtnum<=0?\"┃\":\"⠀⠀⠀⠀┃\"}",
 			{ win = win })
 	end
 end

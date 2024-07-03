@@ -5,6 +5,10 @@ return {
 		priority = 1024,
 		config = function()
 			local transparent = true
+			local color_overrides = {}
+			if transparent then
+				color_overrides = { theme = { all = { ui = { bg_gutter = "NONE" } } } }
+			end
 			require("kanagawa").setup({
 				transparent = transparent,
 				compile = false,
@@ -12,8 +16,8 @@ return {
 				commentStyle = { italic = false, bold = false },
 				keywordStyle = { italic = false, bold = false },
 				statementStyle = { italic = false, bold = false },
+				colors = color_overrides,
 				overrides = function(colors)
-					local config = require("kanagawa").config
 					return {
 						["Boolean"] = { bold = false },
 						["Todo"] = { bold = false },
@@ -24,13 +28,13 @@ return {
 						["@comment.warning"] = { bold = false },
 						["@comment.note"] = { bold = false },
 						["Conceal"] = { bold = false },
-						["CurSearch"] = { bold = false },
 						["CursorLineNr"] = { bold = false },
+						["CurSearch"] = { bold = false },
 						["MatchParen"] = { bold = false },
 						["ModeMsg"] = { bold = false },
 						["FloatTitle"] = { bold = false },
 						["Title"] = { bold = false },
-						["LinePad"] = { bg = colors.theme.ui.bg_gutter, fg = colors.theme.ui.bg },
+						["LinePad"] = { fg = colors.theme.ui.nontext, bg = colors.theme.ui.bg_gutter },
 						["FloatBorder"] = { fg = colors.theme.ui.float.fg_border, bg = not transparent and colors.theme.ui.bg or "NONE" },
 						["CmdlineCommand"] = { fg = colors.theme.diag.warning, bg = colors.theme.ui.bg },
 						["Pmenu"] = { bg = colors.theme.ui.bg_m3 },
@@ -38,6 +42,7 @@ return {
 						["PmenuThumb"] = { bg = colors.theme.term[9] },
 						["PmenuSel"] = { bg = colors.theme.bg_visual },
 						["NormalFloat"] = { bg = not transparent and colors.theme.ui.float.bg or "NONE" },
+						["IndentWhitespace"] = { fg = "#303030" },
 					}
 				end,
 			})

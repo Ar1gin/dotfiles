@@ -40,6 +40,7 @@ vim.opt.shortmess = "aoOstTWIcC"
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.undofile = true
+vim.opt.fillchars = { eob = " " }
 -- Replaced by `stay-centered` plugin
 -- vim.opt.scrolloff = 999
 

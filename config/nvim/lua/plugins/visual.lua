@@ -27,7 +27,7 @@ return {
 					overlap = { tabline = true, winbar = false, borders = false, statusline = false },
 				},
 				hide = {
-					cursorline = false,
+					cursorline = true,
 				},
 				render = function(props)
 					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":.")
@@ -66,7 +66,10 @@ return {
 		main = "ibl",
 		opts = {
 			scope = { enabled = false },
-			indent = { char = "│" },
+			indent = {
+				char = "│",
+				highlight = "IndentWhitespace",
+			},
 		},
 	},
 	{
