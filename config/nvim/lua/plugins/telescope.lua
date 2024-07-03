@@ -93,6 +93,7 @@ return {
 			vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, {})
 			vim.keymap.set("n", "<leader>gC", builtin.git_commits, {})
 			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
+			vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "FloatBorder" })
 		end,
 	},
 	{

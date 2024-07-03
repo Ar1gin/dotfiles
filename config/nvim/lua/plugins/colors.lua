@@ -4,13 +4,16 @@ return {
 		lazy = false,
 		priority = 1024,
 		config = function()
+			local transparent = true
 			require("kanagawa").setup({
+				transparent = transparent,
 				compile = false,
 				undercurl = false,
 				commentStyle = { italic = false, bold = false },
 				keywordStyle = { italic = false, bold = false },
 				statementStyle = { italic = false, bold = false },
 				overrides = function(colors)
+					local config = require("kanagawa").config
 					return {
 						["Boolean"] = { bold = false },
 						["Todo"] = { bold = false },
@@ -28,12 +31,13 @@ return {
 						["FloatTitle"] = { bold = false },
 						["Title"] = { bold = false },
 						["LinePad"] = { bg = colors.theme.ui.bg_gutter, fg = colors.theme.ui.bg },
-						["FloatBorder"] = { fg = colors.theme.ui.float.fg_border, bg = colors.theme.ui.bg },
+						["FloatBorder"] = { fg = colors.theme.ui.float.fg_border, bg = not transparent and colors.theme.ui.bg or "NONE" },
 						["CmdlineCommand"] = { fg = colors.theme.diag.warning, bg = colors.theme.ui.bg },
 						["Pmenu"] = { bg = colors.theme.ui.bg_m3 },
 						["PmenuSbar"] = { bg = colors.theme.ui.bg_m1 },
 						["PmenuThumb"] = { bg = colors.theme.term[9] },
 						["PmenuSel"] = { bg = colors.theme.bg_visual },
+						["NormalFloat"] = { bg = not transparent and colors.theme.ui.float.bg or "NONE" },
 					}
 				end,
 			})
