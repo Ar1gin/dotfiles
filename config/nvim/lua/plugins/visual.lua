@@ -75,7 +75,10 @@ return {
 	{
 		"arnamak/stay-centered.nvim",
 		opts = {
-			enabled = true
+			enabled = true,
+			skip_filetypes = {
+				"buffer_manager",
+			},
 		},
 	},
 	{
