@@ -58,28 +58,12 @@ config.background = {
 			Gradient = {
 				orientation = { Linear = { angle = -20.0 } },
 				colors = {
-					-- Base colors:
-					-- #1D1E27, #15151C
 					"#1C1D27",
-					"#442B37", -- replaces #1C1D27
-					"#1C1D27",
-					"#1C1D27",
-					"#1A1A23",
-					"#1A1A23",
-					"#1A1A23",
-					"#1A1A23",
-					"#171820",
-					"#171820",
-					"#171820",
-					"#171820",
-					"#15151C",
-					"#15151C",
-					"#44312A", -- replaces #15151C
 					"#15151C",
 				},
 				interpolation = "Linear",
 				noise = 0,
-				segment_size = 16,
+				segment_size = 4,
 				segment_smoothness = 0.025,
 			},
 		},
