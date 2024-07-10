@@ -36,7 +36,7 @@ return {
 		},
 		inactive_sections = {
 			lualine_a = { lualine_pad },
-			lualine_b = {},
+			lualine_b = { "filename" },
 			lualine_c = {},
 			lualine_x = {},
 			lualine_y = {},

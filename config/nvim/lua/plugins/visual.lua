@@ -73,13 +73,16 @@ return {
 		},
 	},
 	{
-		"arnamak/stay-centered.nvim",
-		opts = {
-			enabled = true,
-			skip_filetypes = {
-				"buffer_manager",
-			},
-		},
+		name = "center",
+		dir = "center",
+		config = function()
+			require("center").setup({
+				enabled = true,
+				skip_filetypes = {
+					"buffer_manager",
+				},
+			})
+		end
 	},
 	{
 		"stevearc/dressing.nvim",
