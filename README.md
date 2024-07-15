@@ -6,6 +6,7 @@
 - Kitty
 - Wezterm
 - Zsh
+- Starship
 ## Installation
 Dotfiles are managed by `stow` via `make`.
 

@@ -1,0 +1,65 @@
+format = '''
+[\[$username@$hostname\]:\[$directory$git_branch\]$git_status$git_state
+- $character ](fg:white)
+'''
+
+[username]
+style_root = "bright-red"
+style_user = "bright-blue"
+format = "[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+ssh_symbol = "-@"
+format = "[$ssh_symbol$hostname]($style)"
+style = "bright-blue"
+
+[directory]
+format = '[$read_only]($read_only_style)[$path]($style)'
+style = "fg:bright-blue"
+truncation_symbol = "*"
+
+read_only = "!"
+repo_root_style = "fg:bright-yellow"
+repo_root_format = '[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)'
+
+[git_branch]
+ignore_branches = ["main"]
+style = "fg:bright-purple"
+truncation_length = 16
+truncation_symbol = "*"
+format = "@[$branch(:$remote_branch)]($style)"
+only_attached = true
+
+[git_status]
+format = '( \[[$all_status$ahead_behind]($style)\])'
+style = "fg:bright-white"
+conflicted = "[X](fg:bright-red)"
+stashed = "[T](fg:bright-black)"
+deleted = "[D](fg:bright-yellow)"
+renamed = "[R](fg:bright-yellow)"
+modified = "[M](fg:bright-yellow)"
+staged = "[S](fg:bright-green)"
+untracked = "[U](fg:bright-purple)"
+
+diverged = "/"
+ahead = "+"
+behind = "-"
+up_to_date = ""
+
+[git_state]
+format = ' \[[$state]($style)(:[$progress_current/$progress_total](fg:bright-white))\]'
+rebase = "[REBASING](fg:bright-red)"
+merge = "[MERGING](fg:bright-red)"
+revert = "[REVERTING](fg:bright-purple)"
+cherry_pick = "[PICKING](fg:bright-red)"
+bisect = "[BISECTING](fg:bright-green)"
+am = "APPLYING"
+am_or_rebase = "APPLYING/REBASING"
+style = "fg:bright-white"
+
+[character]
+format = "$symbol"
+success_symbol = '[\$](fg:bright-white)'
+error_symbol = '[\$](fg:bright-red)'
