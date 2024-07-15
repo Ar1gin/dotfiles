@@ -56,6 +56,8 @@ return {
 				"rust_analyzer",
 				"clangd",
 				"pylsp",
+				"marksman",
+				"taplo",
 			}
 			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
@@ -72,11 +74,8 @@ return {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
 					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.rename, opts)
+					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
 					vim.api.nvim_buf_create_user_command(ev.buf, "Format", function(_)
 						vim.lsp.buf.format()
 					end, { desc = "Format current buffer with LSP" })

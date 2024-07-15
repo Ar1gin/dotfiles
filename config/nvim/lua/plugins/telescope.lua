@@ -21,6 +21,8 @@ return {
 			{ "<leader>gc", desc = "List Commits" },
 			{ "<leader>gC", desc = "List All Commits" },
 			{ "<leader>gs", desc = "Git Status" },
+			{ "gr", desc = "References" },
+			{ "gd", desc = "Definitions" },
 		},
 		config = function()
 			local actions = require("telescope.actions")
@@ -93,6 +95,8 @@ return {
 			vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, {})
 			vim.keymap.set("n", "<leader>gC", builtin.git_commits, {})
 			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
+			vim.keymap.set("n", "gr", builtin.lsp_references, {})
+			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 			vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "FloatBorder" })
 		end,
 	},

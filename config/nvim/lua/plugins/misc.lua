@@ -32,7 +32,7 @@ return {
 			local global_note = require("global-note")
 			global_note.setup({
 				title = "Global Note",
-				directory = "~/Projects/Notes",
+				directory = "~/Projects/Notes/Repos",
 				filename = "global_note.md",
 				command_name = "GlobalNote",
 				window_config = function()
