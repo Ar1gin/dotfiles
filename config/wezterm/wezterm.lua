@@ -16,6 +16,7 @@ for _, intensity in ipairs({ "Normal", "Bold" }) do
 		})
 	end
 end
+config.enable_wayland = false
 config.freetype_load_flags = "FORCE_AUTOHINT"
 config.font_size = 14
 config.max_fps = 75
