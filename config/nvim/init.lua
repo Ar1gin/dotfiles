@@ -42,6 +42,7 @@ vim.opt.ignorecase = true
 vim.opt.undofile = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.virtualedit = "onemore"
+vim.opt.timeout = false
 -- vim.opt.scrolloff = 999
 
 -- FTPlugin, begone

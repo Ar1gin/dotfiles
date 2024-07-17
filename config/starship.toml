@@ -18,7 +18,7 @@ style = "bright-blue"
 [directory]
 format = '[$read_only]($read_only_style)[$path]($style)'
 style = "fg:bright-blue"
-truncation_symbol = "*"
+truncation_symbol = "*/"
 
 read_only = "!"
 repo_root_style = "fg:bright-yellow"
