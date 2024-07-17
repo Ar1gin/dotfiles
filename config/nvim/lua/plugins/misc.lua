@@ -80,15 +80,6 @@ return {
 		end
 	},
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-			require("which-key").setup({})
-		end,
-	},
-	{
 		"moll/vim-bbye",
 		keys = {
 			{ "<leader>bd", "<cmd>Bdelete<cr>",    desc = "Delete current buffer" },
