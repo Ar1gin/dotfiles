@@ -97,62 +97,56 @@ return {
 		opts = {},
 	},
 	{
-		"j-morano/buffer_manager.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { "nvim-lua/plenary.nvim" },
 		keys = {
-			{ "<leader>z", desc = "Buffer Quick Menu" },
+			{ "<leader>za", desc = "Add buffer to harpoon" },
+			{ "<leader>zs", desc = "Seek harpoon buffers" },
+			{ "<leader>zd", desc = "Remove buffer from harpoon" },
+			{ "<leader>zx", desc = "Previous harpoon buffer" },
+			{ "<leader>zc", desc = "Next harpoon buffer" },
 		},
 		config = function()
-			require("buffer_manager").setup({
-				-- Plenary's windows have `Normal` highlight
-				highlight = "Normal:FloatBorder",
-				borderchars = require("globals").border_chars_alternate,
-				format_function = function(fname)
-					local bufnr = vim.fn.bufnr(fname)
-					fname = vim.fn.fnamemodify(fname, ":~:.") .. " "
-					if bufnr ~= -1 and vim.fn.buflisted(bufnr) == 1 then
-						local diagnostics = vim.diagnostic.get(bufnr)
-						local count = { 0, 0, 0, 0 }
-						for _, diagnostic in ipairs(diagnostics) do
-							if vim.startswith(vim.diagnostic.get_namespace(diagnostic.namespace).name, "vim.lsp") then
-								count[diagnostic.severity] = count[diagnostic.severity] + 1
-							end
-						end
-						local left = 5
-						if count[vim.diagnostic.severity.ERROR] > 0 then
-							local chars = math.min(left, count[vim.diagnostic.severity.ERROR])
-							fname = fname .. string.rep("🐈", chars)
-							left = left - chars
-							return fname
-						end
-						if count[vim.diagnostic.severity.WARN] > 0 then
-							local chars = math.min(left, count[vim.diagnostic.severity.WARN])
-							fname = fname .. string.rep("🔪", chars)
-							left = left - chars
-						end
-						if count[vim.diagnostic.severity.INFO] > 0 then
-							local chars = math.min(left, count[vim.diagnostic.severity.INFO])
-							fname = fname .. string.rep("🤔", chars)
-							left = left - chars
-						end
-						if count[vim.diagnostic.severity.HINT] > 0 then
-							local chars = math.min(left, count[vim.diagnostic.severity.HINT])
-							fname = fname .. string.rep("⭐", chars)
-							left = left - chars
-						end
-					end
-					return fname
-				end,
+			local harpoon = require("harpoon")
+			harpoon:setup({
+				settings = { save_on_ui_close = true, save_on_toggle = true },
 			})
-			vim.keymap.set("n", "<leader>z", require("buffer_manager.ui").toggle_quick_menu)
-			local b_ui = require("buffer_manager.ui")
+			vim.keymap.set("n", "<leader>za", function() harpoon:list():add() end)
+			vim.keymap.set("n", "<leader>zs",
+				function()
+					harpoon.ui:toggle_quick_menu(harpoon:list(), {
+						border = require("globals").border_chars,
+						title = " Buffers ",
+						title_pos = "center",
+					})
+				end)
+			vim.keymap.set("n", "<leader>zd", function() harpoon:list():remove() end)
+			vim.keymap.set("n", "<leader>zx", function() harpoon:list():prev() end)
+			vim.keymap.set("n", "<leader>zc", function() harpoon:list():next() end)
 			local keys = "1234567890"
 			for i = 1, #keys do
 				local key = keys:sub(i, i)
-				vim.keymap.set("n", "<leader>" .. key, function()
-					b_ui.nav_file(i)
+				vim.keymap.set("n", string.format("<C-%s>", key), function()
+					harpoon:list():select(i)
 				end)
 			end
-		end
-	},
+			harpoon:extend({
+				UI_CREATE = function(cx)
+					for i = 1, #keys do
+						local key = keys:sub(i, i)
+						vim.keymap.set("n", key, function()
+							harpoon:list():select(i)
+						end, { buffer = cx.bufnr })
+					end
+					vim.keymap.set("n", "<C-v>", function()
+						harpoon.ui:select_menu_item({ vsplit = true })
+					end, { buffer = cx.bufnr })
+					vim.keymap.set("n", "<C-s>", function()
+						harpoon.ui:select_menu_item({ split = true })
+					end, { buffer = cx.bufnr })
+				end,
+			})
+		end,
+	}
 }
