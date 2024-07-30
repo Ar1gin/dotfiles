@@ -19,6 +19,8 @@ vim.opt.rtp:prepend(lazypath)
 
 if vim.g.neovide then
 	vim.o.guifont = "Hack Nerd Font:h14:#h-slight"
+	vim.g.neovide_transparency = 0.75
+	vim.g.neovide_window_blurred = true
 end
 
 vim.opt.autoread = true

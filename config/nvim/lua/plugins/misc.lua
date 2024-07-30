@@ -145,6 +145,14 @@ return {
 				end,
 			})
 			vim.keymap.set("n", "<leader>z", require("buffer_manager.ui").toggle_quick_menu)
+			local b_ui = require("buffer_manager.ui")
+			local keys = "1234567890"
+			for i = 1, #keys do
+				local key = keys:sub(i, i)
+				vim.keymap.set("n", "<leader>" .. key, function()
+					b_ui.nav_file(i)
+				end)
+			end
 		end
 	},
 }
