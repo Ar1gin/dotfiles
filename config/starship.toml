@@ -12,7 +12,7 @@ show_always = true
 [hostname]
 ssh_only = false
 ssh_symbol = "-@"
-format = "[$ssh_symbol$hostname]($style)"
+format = "$ssh_symbol[$hostname]($style)"
 style = "bright-blue"
 
 [directory]
