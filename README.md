@@ -7,6 +7,7 @@
 - Wezterm
 - Zsh
 - Starship
+- Zellij
 ## Installation
 Dotfiles are managed by `stow` via `make`.
 
