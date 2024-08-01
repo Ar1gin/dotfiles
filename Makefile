@@ -1,11 +1,19 @@
-.PHONY: stow unstow
+.PHONY: stow unstow restow clear
 
 STOW_TARGET = $$HOME"/.config"
 STOW_SOURCE = "./config"
 
-stow:
+generated = config/nushell/zoxide.nu
+
+config/nushell/zoxide.nu:
+	zoxide init nushell > config/nushell/zoxide.nu
+
+clear: unstow
+	rm $(generated)
+
+stow: $(generated)
 	stow -v -t $(STOW_TARGET) -d $(STOW_SOURCE) -S ./
 unstow:
 	stow -v -t $(STOW_TARGET) -d $(STOW_SOURCE) -D ./
-restow:
+restow: $(generated)
 	stow -v -t $(STOW_TARGET) -d $(STOW_SOURCE) -R ./

@@ -6,6 +6,7 @@
 - Kitty
 - Wezterm
 - Zsh
+- Nushell
 - Starship
 - Zellij
 ## Installation
