@@ -5,7 +5,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-fzf-native.nvim",
-			"folke/todo-comments.nvim",
 		},
 		keys = {
 			{ "<leader>f",  desc = "Find All Files" },
@@ -17,12 +16,11 @@ return {
 			{ "<leader>S",  desc = "Global Symbols" },
 			{ "<leader>d",  desc = "Local Diagnostics" },
 			{ "<leader>D",  desc = "Global Diagnostics" },
-			{ "<leader>q",  "<cmd>TodoTelescope<cr>",      desc = "Todo List" },
 			{ "<leader>gc", desc = "List Commits" },
 			{ "<leader>gC", desc = "List All Commits" },
 			{ "<leader>gs", desc = "Git Status" },
-			{ "gr", desc = "References" },
-			{ "gd", desc = "Definitions" },
+			{ "gr",         desc = "References" },
+			{ "gd",         desc = "Definitions" },
 		},
 		config = function()
 			local actions = require("telescope.actions")
@@ -102,6 +100,9 @@ return {
 	},
 	{
 		"aznhe21/actions-preview.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
 		keys = {
 			{ "<leader>a", desc = "Code Actions" },
 		},
@@ -128,7 +129,11 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = {
-			"nvim-lua/plenary.nvim"
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		keys = {
+			{ "<leader>q", "<cmd>TodoTelescope<cr>", desc = "Todo List" },
 		},
 		opts = {
 			signs = true,
