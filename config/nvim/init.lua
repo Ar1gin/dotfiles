@@ -19,8 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 
 if vim.g.neovide then
 	vim.o.guifont = "Hack Nerd Font:h14:#h-slight"
-	vim.g.neovide_transparency = 0.75
-	vim.g.neovide_window_blurred = true
 end
 
 vim.opt.autoread = true
@@ -31,9 +29,18 @@ vim.opt.autoindent = true
 vim.opt.softtabstop = 0
 vim.opt.preserveindent = true
 vim.opt.eol = true
-vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.wrap = true
+vim.opt.wrap = false
+vim.opt.sidescrolloff = 16
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "┆  ",
+	leadmultispace = "│   ",
+	multispace = "·",
+	extends = "»",
+	precedes = "«",
+	trail = "─",
+}
 vim.opt.signcolumn = "yes"
 vim.opt.hlsearch = false
 vim.opt.cursorline = true
@@ -45,10 +52,13 @@ vim.opt.undofile = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.virtualedit = "onemore"
 vim.opt.timeout = false
+vim.opt.showmode = false
+vim.diagnostic.config({ virtual_text = false, underline = false })
 -- vim.opt.scrolloff = 999
 
 -- FTPlugin, begone
 vim.cmd("autocmd BufReadPre,BufNewFile * let b:did_ftplugin = 1")
+vim.cmd("filetype plugin off")
 
 vim.diagnostic.config({
 	severity_sort = true,

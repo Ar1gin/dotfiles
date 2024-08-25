@@ -62,11 +62,6 @@ return {
 			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
 				lsp_config[lsp_server].setup({
-					-- settings = {
-					-- 	rust_analyzer = {
-					-- 		hint = { enable = true },
-					-- 	}
-					-- },
 					capabilities = capabilities,
 				})
 			end
@@ -84,8 +79,12 @@ return {
 		end,
 	},
 	{
+
 		"hrsh7th/nvim-cmp",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"hrsh7th/cmp-buffer"
+		},
 		config = function()
 			-- IMPORTANT OPTION!
 			vim.opt.pumheight = 7
@@ -152,6 +151,7 @@ return {
 					-- FIXME: Suggestion sorting is bogus;
 					-- All the useful suggestions are at the bottom
 					{ name = "nvim_lsp" },
+				}, {
 					{ name = "buffer" },
 				}),
 				mapping = cmp.mapping.preset.insert({

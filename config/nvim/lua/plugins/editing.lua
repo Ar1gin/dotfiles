@@ -3,25 +3,19 @@ return {
 		name = "multiline",
 		dir = "multiline",
 		keys = {
-			{ "<C-n><C-n>", desc = "Surround with newlines" },
-			{ "<C-n>A",     desc = "Surround with newlines -> A" },
-			{ "<C-n>I",     desc = "Surround with newlines -> I" },
-			{ "<C-n>S",     desc = "Surround with newlines -> S" },
-			{ "o",          desc = "Open a new line below" },
-			{ "O",          desc = "Open a new line above" },
-			{ "<C-n>d",     desc = "Remove newline surround" },
-			{ "<C-n>D",     desc = "Remove all newline surround" },
-			{ "<C-n>f",     desc = "Set newline surround" },
-			{ "<C-n>b",     desc = "Break selection into a new line" },
+			{ "<C-n>",  desc = "Surround with newlines" },
+			{ "o",      desc = "Open a new line below" },
+			{ "O",      desc = "Open a new line above" },
+			{ "<C-n>d", desc = "Remove newline surround" },
+			{ "<C-n>D", desc = "Remove all newline surround" },
+			{ "<C-n>f", desc = "Set newline surround" },
+			{ "<C-n>b", desc = "Break selection into a new line" },
 		},
 		config = function()
 			local multiline = require("multiline")
 			multiline.setup({})
 
-			vim.keymap.set({ "n", "v" }, "<C-n><C-n>", multiline.surround_newlines(""), {})
-			vim.keymap.set({ "n", "v" }, "<C-n>A", multiline.surround_newlines("A"), {})
-			vim.keymap.set({ "n", "v" }, "<C-n>I", multiline.surround_newlines("I"), {})
-			vim.keymap.set({ "n", "v" }, "<C-n>S", multiline.surround_newlines("S"), {})
+			vim.keymap.set({ "n", "v" }, "<C-n>", multiline.surround_newlines(""), {})
 			vim.keymap.set("n", "o", multiline.next_surround("S"), {})
 			vim.keymap.set("n", "O", multiline.prev_surround("S"), {})
 			vim.keymap.set("n", "<C-n>d", multiline.remove_surround, {})

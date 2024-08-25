@@ -5,13 +5,14 @@ return {
 			{ "M", desc = "Hop" },
 		},
 		config = function()
+			require("squirrel.utils").key_iter.keys = "hfjdksla"
 			vim.keymap.set({ "n", "v" }, "M", require("squirrel.hop").hop)
 		end,
 	},
 	{
 		"ggandor/leap.nvim",
 		keys = {
-			{ "m", "<Plug>(leap)", desc = "Leap" },
+			{ "<C-m>", "<Plug>(leap)", desc = "Leap" },
 		},
 		config = function()
 			local leap = require("leap")
@@ -60,23 +61,24 @@ return {
 						enable = true,
 						lookahead = true,
 						keymaps = {
-							["af"] = { query = "@function.outer", desc = "function" },
-							["if"] = { query = "@function.inner", desc = "function" },
-							["at"] = { query = "@class.outer", desc = "type" },
-							["it"] = { query = "@class.inner", desc = "type" },
-							["ia"] = { query = "@assignment.lhs", desc = "assignment" },
-							["aa"] = { query = "@assignment.rhs", desc = "assignment" },
-							["ap"] = { query = "@parameter.outer", desc = "parameter" },
-							["ip"] = { query = "@parameter.inner", desc = "parameter" },
-							["ac"] = { query = "@call.outer", desc = "call" },
-							["ic"] = { query = "@call.inner", desc = "call" },
-							["ad"] = { query = "@comment.outer", desc = "comment" },
-							["id"] = { query = "@comment.inner", desc = "comment" },
+							["aF"] = { query = "@function.outer", desc = "function" },
+							["iF"] = { query = "@function.inner", desc = "function" },
+							["aT"] = { query = "@class.outer", desc = "type" },
+							["iT"] = { query = "@class.inner", desc = "type" },
+							["iA"] = { query = "@assignment.lhs", desc = "assignment" },
+							["aA"] = { query = "@assignment.rhs", desc = "assignment" },
+							["aP"] = { query = "@parameter.outer", desc = "parameter" },
+							["iP"] = { query = "@parameter.inner", desc = "parameter" },
+							["aC"] = { query = "@call.outer", desc = "call" },
+							["iC"] = { query = "@call.inner", desc = "call" },
+							["aD"] = { query = "@comment.outer", desc = "comment" },
+							["iD"] = { query = "@comment.inner", desc = "comment" },
 						},
 						include_surrounding_whitespace = true,
 					},
 					move = {
 						enable = true,
+						set_jumps = true,
 						goto_next_start = goto_next_start,
 						goto_next_end = goto_next_end,
 						goto_previous_start = goto_previous_start,

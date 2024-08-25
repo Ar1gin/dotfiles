@@ -114,6 +114,10 @@ return {
 			{ "<leader>zd", desc = "Remove buffer from harpoon" },
 			{ "<leader>zx", desc = "Previous harpoon buffer" },
 			{ "<leader>zc", desc = "Next harpoon buffer" },
+			{ "<C-1>" },
+			{ "<C-2>" },
+			{ "<C-3>" },
+			{ "<C-4>" },
 		},
 		config = function()
 			local harpoon = require("harpoon")
