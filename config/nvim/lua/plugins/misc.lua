@@ -2,11 +2,11 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		keys = {
-			{ "<C-\\>", desc = "Toggle Terminal" },
+			{ "<C-/>", desc = "Toggle Terminal" },
 		},
 		opts = {
 			autochdir = true,
-			open_mapping = "<C-\\>",
+			open_mapping = "<C-/>",
 			direction = "float",
 			shade_terminals = false,
 			float_opts = {

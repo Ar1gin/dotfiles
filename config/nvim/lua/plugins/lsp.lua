@@ -58,6 +58,7 @@ return {
 				"pylsp",
 				"marksman",
 				"taplo",
+				"zls",
 			}
 			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
@@ -83,7 +84,8 @@ return {
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"hrsh7th/cmp-buffer"
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		config = function()
 			-- IMPORTANT OPTION!
@@ -151,7 +153,7 @@ return {
 					-- FIXME: Suggestion sorting is bogus;
 					-- All the useful suggestions are at the bottom
 					{ name = "nvim_lsp" },
-				}, {
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
 				}),
 				mapping = cmp.mapping.preset.insert({

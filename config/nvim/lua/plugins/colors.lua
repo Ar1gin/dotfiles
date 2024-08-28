@@ -42,7 +42,8 @@ return {
 						["PmenuThumb"] = { bg = colors.theme.term[9] },
 						["PmenuSel"] = { bg = colors.theme.bg_visual },
 						["NormalFloat"] = { bg = not transparent and colors.theme.ui.float.bg or "NONE" },
-						["IndentWhitespace"] = { fg = "#303030" },
+						["Whitespace"] = { fg = "#606060" },
+						["NonText"] = { fg = "#606060" },
 					}
 				end,
 			})
@@ -68,8 +69,6 @@ return {
 			for i, color in ipairs(termcolors) do
 				vim.g["terminal_color_" .. i - 1] = color
 			end
-			vim.cmd([[match WrongWhitespace /\s\+$/]])
-			vim.api.nvim_set_hl(0, "WrongWhitespace", { bg = "#FF0000" })
 			vim.api.nvim_set_hl(0, "ExchangeRegion", { link = "CursorLine" })
 		end,
 	},

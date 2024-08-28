@@ -28,7 +28,6 @@ vim.opt.expandtab = false
 vim.opt.autoindent = true
 vim.opt.softtabstop = 0
 vim.opt.preserveindent = true
-vim.opt.eol = true
 vim.opt.number = true
 vim.opt.wrap = false
 vim.opt.sidescrolloff = 16
@@ -50,28 +49,14 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.undofile = true
 vim.opt.fillchars = { eob = " " }
-vim.opt.virtualedit = "onemore"
+vim.opt.virtualedit = "all"
 vim.opt.timeout = false
 vim.opt.showmode = false
-vim.diagnostic.config({ virtual_text = false, underline = false })
--- vim.opt.scrolloff = 999
+vim.diagnostic.config({ virtual_text = false, underline = false, signs = false })
 
 -- FTPlugin, begone
 vim.cmd("autocmd BufReadPre,BufNewFile * let b:did_ftplugin = 1")
 vim.cmd("filetype plugin off")
-
-vim.diagnostic.config({
-	severity_sort = true,
-	signs = {
-		text = {
-			-- Don't ask, I like them
-			[vim.diagnostic.severity.ERROR] = "🐈",
-			[vim.diagnostic.severity.WARN] = "🔪",
-			[vim.diagnostic.severity.INFO] = "🤔",
-			[vim.diagnostic.severity.HINT] = "⭐",
-		},
-	},
-})
 
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")     -- move line up(n)
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==")     -- move line down(n)
