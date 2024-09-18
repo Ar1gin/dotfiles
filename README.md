@@ -2,13 +2,14 @@
 ## Screenshots
 ![Neovim+Wezterm](screenshots/preview_neovim.png)
 ## Available configurations
-- Neovim
+- Fontconfig
 - Kitty
-- Wezterm
-- Zsh
+- Neovim
 - Nushell
 - Starship
+- Wezterm
 - Zellij
+- Zsh
 ## Installation
 Dotfiles are managed by `stow` via `make`.
 
