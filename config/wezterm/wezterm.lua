@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local config = {}
 
-local font_family = "Hack Nerd Font Mono"
+local font_family = "JetBrainsMono Nerd Font"
 config.font = wezterm.font(font_family, {
 	weight = "Regular",
 	italic = false,
@@ -19,6 +19,8 @@ end
 config.enable_wayland = false
 config.freetype_load_flags = "FORCE_AUTOHINT"
 config.font_size = 14
+config.line_height = 0.875
+config.cursor_thickness = 2
 config.max_fps = 75
 config.enable_tab_bar = false
 config.window_padding = {
