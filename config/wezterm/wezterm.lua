@@ -1,9 +1,15 @@
 local wezterm = require("wezterm")
 local config = {}
 
-local font_family = "JetBrainsMono Nerd Font"
-config.font = wezterm.font(font_family, {
+config.font = wezterm.font({
+	family = "JetBrainsMono Nerd Font",
 	weight = "Regular",
+	harfbuzz_features = {
+		"calt=0", -- Disable ligatures
+		"cv18=1", -- Alternate 2, 6 and 9
+		"cv19=1", -- Alternate 8
+		"cv14=1", -- Alternate $
+	},
 	italic = false,
 })
 config.font_rules = {}
