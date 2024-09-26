@@ -17,10 +17,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-if vim.g.neovide then
-	vim.o.guifont = "Hack Nerd Font:h14:#h-slight"
-end
-
 vim.opt.autoread = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4

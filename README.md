@@ -4,6 +4,7 @@
 ## Available configurations
 - Fontconfig
 - Kitty
+- Neovide
 - Neovim
 - Nushell
 - Starship
