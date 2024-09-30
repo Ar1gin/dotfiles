@@ -32,7 +32,7 @@ M.enable_pad = function()
 	end
 	local group = vim.api.nvim_create_augroup("PadGroup", {})
 	M.group = group
-	vim.api.nvim_create_autocmd({ "WinResized", "WinNew", "VimEnter" }, {
+	vim.api.nvim_create_autocmd({ "WinResized", "WinNew", "VimEnter", "BufEnter" }, {
 		group = group,
 		callback = function(ev)
 			if ev.event == "WinResized" then
@@ -68,9 +68,12 @@ M.get_pad_size = function(win)
 end
 
 M.pad_window = function(win)
-	if (not M.enabled) or (#vim.api.nvim_win_get_config(win).relative > 0) then
+	if #vim.api.nvim_win_get_config(win).relative > 0 then
+		return
+	end
+	if not M.enabled then
 		M.set_pad_size(win, 0)
-		vim.api.nvim_set_option_value("statuscolumn", "", { win = win })
+		vim.api.nvim_set_option_value("statuscolumn", "%#LineNr#%2.2s%4.4l%#LinePad#%{\"┃\"}", { win = win })
 	else
 		local total_pad = M.update_pad_size(win)
 		vim.api.nvim_set_option_value("statuscolumn",
