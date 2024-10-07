@@ -35,8 +35,8 @@ return {
 			multiline.setup({})
 
 			vim.keymap.set({ "n", "v" }, "<C-n>", multiline.surround_newlines(""), {})
-			vim.keymap.set("n", "o", multiline.next_surround("S"), {})
-			vim.keymap.set("n", "O", multiline.prev_surround("S"), {})
+			vim.keymap.set("n", "o", multiline.next_surround("\"_S"), {})
+			vim.keymap.set("n", "O", multiline.prev_surround("\"_S"), {})
 			vim.keymap.set("n", "<C-n>d", multiline.remove_surround, {})
 			vim.keymap.set("n", "<C-n>D", multiline.remove_all_surround, {})
 			vim.keymap.set("n", "<C-n>f", multiline.set_surround, {})

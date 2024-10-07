@@ -180,8 +180,8 @@ M.break_into_lines = function()
 	-- End split
 	local end_line = vim.api.nvim_buf_get_lines(0, v_end[2] - 1, v_end[2], false)[1]
 	if v_end[3] < #end_line then
-		local line_start = end_line:sub(1, v_end[3])
-		local line_end = end_line:sub(v_end[3] + 1)
+		local line_start = end_line:sub(1, v_end[3]):gsub("%s+$", "")
+		local line_end = end_line:sub(v_end[3] + 1):gsub("^%s+", "")
 		local pad = line_start:match("^%s+") or ""
 		vim.api.nvim_buf_set_lines(0, v_end[2] - 1, v_end[2], false, {
 			line_start,
@@ -192,8 +192,8 @@ M.break_into_lines = function()
 	-- Start split
 	local start_line = vim.api.nvim_buf_get_lines(0, v_start[2] - 1, v_start[2], false)[1]
 	if v_start[3] > 1 then
-		local line_start = start_line:sub(1, v_start[3] - 1)
-		local line_end = start_line:sub(v_start[3])
+		local line_start = start_line:sub(1, v_start[3] - 1):gsub("%s+$", "")
+		local line_end = start_line:sub(v_start[3]):gsub("^%s+", "")
 		local pad = line_start:match("^%s+") or ""
 		vim.api.nvim_buf_set_lines(0, v_end[2] - 1, v_end[2], false, {
 			line_start,
@@ -204,7 +204,7 @@ M.break_into_lines = function()
 		vim.api.nvim_win_set_cursor(0, { v_start[2], vim.v.maxcol })
 	end
 
-	vim.api.nvim_input("<Esc>")
+	vim.api.nvim_input("<Esc>>>")
 end
 
 return M
