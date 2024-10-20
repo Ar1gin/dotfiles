@@ -89,6 +89,9 @@ $env.config = {
 	bracketed_paste: true
 	edit_mode: vi
 	highlight_resolved_externals: true
+	display_errors: {
+		exit_code: false
+	}
 }
 
 $env.STARSHIP_SHELL = "nu"
