@@ -19,6 +19,7 @@ return {
 			{ "<leader>gc", desc = "List Commits" },
 			{ "<leader>gC", desc = "List All Commits" },
 			{ "<leader>gs", desc = "Git Status" },
+			{ "<leader>hk", desc = "Search keymaps" },
 			{ "gr",         desc = "References" },
 			{ "gd",         desc = "Definitions" },
 		},
@@ -39,7 +40,7 @@ return {
 					borderchars = require("globals").border_chars_alternate,
 					default_mappings = {
 						n = {
-							["<Esc>"] = false,
+							["<Esc>"] = actions.close,
 							["j"] = actions.move_selection_next,
 							["k"] = actions.move_selection_previous,
 							["h"] = actions.select_default,
@@ -63,7 +64,6 @@ return {
 							["<M-h>"] = actions.preview_scrolling_left,
 							["<M-l>"] = actions.preview_scrolling_right,
 							-- TODO: actions.select_{horizontal, vertical, tab}
-
 						},
 					},
 					initial_mode = "insert",
@@ -93,6 +93,7 @@ return {
 			vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, {})
 			vim.keymap.set("n", "<leader>gC", builtin.git_commits, {})
 			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
+			vim.keymap.set("n", "<leader>hk", builtin.keymaps, {})
 			vim.keymap.set("n", "gr", builtin.lsp_references, {})
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
 			vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "FloatBorder" })
