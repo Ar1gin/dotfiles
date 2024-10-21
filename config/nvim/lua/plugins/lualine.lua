@@ -9,38 +9,63 @@ local lualine_pad = {
 	end
 }
 return {
-	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", "winpad" },
-	config = true,
-	opts = {
-		options = {
-			theme = "auto",
-			refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-			section_separators = { left = "▌", right = "▐" },
-			component_separators = { left = "", right = "" },
-		},
-		sections = {
-			lualine_a = {
-				lualine_pad,
-				{
-					"mode",
-					separator = { left = "" },
-				},
-			},
-			lualine_b = { "filename", "diff" },
-			lualine_c = {},
-			-- It's him! The legendary cat2!
-			lualine_x = { { function() return "🐈" end }, "diagnostics" },
-			lualine_y = { "branch" },
-			lualine_z = {},
-		},
-		inactive_sections = {
-			lualine_a = { lualine_pad },
-			lualine_b = { "filename" },
-			lualine_c = {},
-			lualine_x = {},
-			lualine_y = {},
-			lualine_z = { function() return "👀" end },
+	{
+		"letieu/harpoon-lualine",
+		dependencies = {
+			{
+				"ThePrimeagen/harpoon",
+				branch = "harpoon2",
+			}
 		},
 	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"winpad",
+			"letieu/harpoon-lualine",
+		},
+		config = true,
+		opts = {
+			options = {
+				theme = "auto",
+				refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
+				section_separators = { left = "▌", right = "▐" },
+				component_separators = { left = "", right = "" },
+			},
+			sections = {
+				lualine_a = {
+					lualine_pad,
+					{
+						"mode",
+						separator = { left = "" },
+					},
+				},
+				lualine_b = { "filename", "diff" },
+				lualine_c = {},
+				lualine_x = {
+					{
+						"harpoon2",
+						icon = "󰀱",
+						indicators = { "1", "2", "3", "4", "5" },
+						active_indicators = { "1", "2", "3", "4", "5" },
+						color = { fg = "#a0a0c0" },
+						color_active = { fg = "#fc6346" },
+					},
+					-- It's him! The legendary cat2!
+					{ function() return "🐈" end }, "diagnostics"
+				},
+				lualine_y = { "branch" },
+				lualine_z = {},
+			},
+			inactive_sections = {
+				lualine_a = { lualine_pad },
+				lualine_b = { "filename" },
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = { function() return "👀" end },
+			},
+		},
+	}
 }
