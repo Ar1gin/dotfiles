@@ -2,7 +2,7 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		keys = {
-			{ "<C-/>",      desc = "Toggle Terminal" },
+			{ "<C-Space>",      desc = "Toggle Terminal" },
 			{ "<leader>mr", "<cmd>TermExec cmd=\"make run\"<cr>",   desc = "Make (run)" },
 			{ "<leader>mb", "<cmd>TermExec cmd=\"make build\"<cr>", desc = "Make (build)" },
 			{ "<leader>mc", "<cmd>TermExec cmd=\"make clean\"<cr>", desc = "Make (clean)" },
@@ -10,7 +10,7 @@ return {
 		},
 		opts = {
 			autochdir = true,
-			open_mapping = "<C-/>",
+			open_mapping = "<C-Space>",
 			direction = "float",
 			shade_terminals = false,
 			float_opts = {
@@ -118,10 +118,10 @@ return {
 			{ "<leader>zd", desc = "Remove buffer from harpoon" },
 			{ "<leader>zx", desc = "Previous harpoon buffer" },
 			{ "<leader>zc", desc = "Next harpoon buffer" },
-			{ "<C-1>" },
-			{ "<C-2>" },
-			{ "<C-3>" },
-			{ "<C-4>" },
+			{ "<leader>1" },
+			{ "<leader>2" },
+			{ "<leader>3" },
+			{ "<leader>4" },
 		},
 		config = function()
 			local harpoon = require("harpoon")
@@ -143,7 +143,7 @@ return {
 			local keys = "1234567890"
 			for i = 1, #keys do
 				local key = keys:sub(i, i)
-				vim.keymap.set("n", string.format("<C-%s>", key), function()
+				vim.keymap.set("n", string.format("<leader>%s", key), function()
 					harpoon:list():select(i)
 				end)
 			end
