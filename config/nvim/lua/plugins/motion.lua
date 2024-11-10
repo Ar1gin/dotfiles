@@ -6,7 +6,10 @@ return {
 		},
 		config = function()
 			require("squirrel.utils").key_iter.keys = "hfjdksla"
-			vim.keymap.set({ "n", "v" }, "M", require("squirrel.hop").hop)
+			vim.keymap.set({ "n", "v" }, "M", function()
+				vim.cmd(".mark '")
+				require("squirrel.hop").hop()
+			end)
 		end,
 	},
 	{
