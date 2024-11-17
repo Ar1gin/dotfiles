@@ -3,6 +3,7 @@
 ![Neovim+Wezterm](screenshots/preview_neovim.png)
 ## Available configurations
 - Fontconfig
+- Foot term
 - Kitty
 - Neovide
 - Neovim
