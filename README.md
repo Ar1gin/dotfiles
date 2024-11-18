@@ -9,6 +9,7 @@
 - Neovim
 - Nushell
 - Starship
+- Tmux
 - Wezterm
 - Zellij
 - Zsh
