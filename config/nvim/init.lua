@@ -70,4 +70,9 @@ vim.keymap.set("n", "<leader>bv", buffer_action("Vsplit: ", ":vnew "))
 vim.keymap.set("n", "<leader>bs", buffer_action("Hsplit: ", ":new "))
 vim.keymap.set("n", "<leader>br", buffer_action("Rename: ", ":file "))
 
+vim.keymap.set({ "n", "v" }, "<PageUp>", "<C-u>")
+vim.keymap.set({ "n", "v" }, "H", "<C-u>")
+vim.keymap.set({ "n", "v" }, "<PageDown>", "<C-d>")
+vim.keymap.set({ "n", "v" }, "L", "<C-d>")
+
 require("lazy").setup("plugins")
