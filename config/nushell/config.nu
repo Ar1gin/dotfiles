@@ -92,6 +92,9 @@ $env.config = {
 	display_errors: {
 		exit_code: false
 	}
+	history: {
+		sync_on_enter: false
+	}
 }
 
 $env.STARSHIP_SHELL = "nu"
