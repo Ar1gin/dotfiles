@@ -25,7 +25,7 @@ return {
 	},
 	{
 		name = "winpad",
-		dir = "winpad", -- TODO: Upload the plugin somewhere
+		dir = vim.fn.stdpath("config") .. "/lua/winpad",
 		config = function()
 			local winpad = require("winpad")
 			winpad.setup({

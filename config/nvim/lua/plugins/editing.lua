@@ -1,26 +1,7 @@
 return {
 	{
-		name = "case",
-		dir = "case",
-		keys = {
-			{ "gsp", mode = { "n", "v" }, desc = "Change to PascalCase" },
-			{ "gss", mode = { "n", "v" }, desc = "Change to snake_case" },
-			{ "gsk", mode = { "n", "v" }, desc = "Change to kebab-case" },
-			{ "gsc", mode = { "n", "v" }, desc = "Change to camelCase" },
-			{ "gsu", mode = { "n", "v" }, desc = "Change to UPPER_CASE" },
-		},
-		config = function()
-			local case = require("case")
-			vim.keymap.set({ "n", "v" }, "gsp", case.convert_case("pascal"), { expr = true })
-			vim.keymap.set({ "n", "v" }, "gss", case.convert_case("snake"), { expr = true })
-			vim.keymap.set({ "n", "v" }, "gsk", case.convert_case("kebab"), { expr = true })
-			vim.keymap.set({ "n", "v" }, "gsc", case.convert_case("camel"), { expr = true })
-			vim.keymap.set({ "n", "v" }, "gsu", case.convert_case("upper"), { expr = true })
-		end,
-	},
-	{
 		name = "multiline",
-		dir = "multiline",
+		dir = vim.fn.stdpath("config") .. "/lua/multiline",
 		keys = {
 			{ "<C-n>",  desc = "Surround with newlines" },
 			{ "o",      desc = "Open a new line below" },

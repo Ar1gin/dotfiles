@@ -16,7 +16,7 @@ return {
 	},
 	{
 		name = "center",
-		dir = "center",
+		dir = vim.fn.stdpath("config") .. "/lua/center",
 		config = function()
 			require("center").setup({
 				enabled = true,
