@@ -25,17 +25,37 @@ return {
 		},
 		config = function()
 			local actions = require("telescope.actions")
+
+			require('telescope.pickers.layout_strategies').horizontal_merged =
+				function(picker, max_columns, max_lines, layout_config)
+					local layout = require('telescope.pickers.layout_strategies').horizontal(picker, max_columns,
+						max_lines,
+						layout_config)
+					local overdraw_chars = require("globals").border_chars_joined
+
+					layout.results.line = layout.results.line - 1
+					layout.results.height = layout.results.height + 1
+					layout.results.title = ''
+					layout.results.borderchars = require("globals").border_chars_telescope_results
+
+					layout.prompt.borderchars = require("globals").border_chars_telescope_prompt
+
+					layout.preview.title = ''
+					return layout
+				end
+
 			require("telescope").setup({
 				defaults = {
 					prompt_prefix = " ",
 					selection_caret = "👉",
+					sorting_strategy = "ascending",
 					layout_config = {
 						width = 0.90,
 						height = 0.90,
-						prompt_position = "bottom", --TODO: Make prompt and results anchor to the top side
+						prompt_position = "top",
 						preview_width = 0.5,
 					},
-					layout_strategy = "horizontal",
+					layout_strategy = "horizontal_merged",
 					wrap_results = true,
 					borderchars = require("globals").border_chars_alternate,
 					default_mappings = {
