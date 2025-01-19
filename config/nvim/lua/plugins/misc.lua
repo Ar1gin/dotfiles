@@ -2,7 +2,7 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		keys = {
-			{ "<C-Space>",      desc = "Toggle Terminal" },
+			{ "<C-Space>",  desc = "Toggle Terminal" },
 			{ "<leader>mr", "<cmd>TermExec cmd=\"make run\"<cr>",   desc = "Make (run)" },
 			{ "<leader>mb", "<cmd>TermExec cmd=\"make build\"<cr>", desc = "Make (build)" },
 			{ "<leader>mc", "<cmd>TermExec cmd=\"make clean\"<cr>", desc = "Make (clean)" },

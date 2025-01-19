@@ -133,9 +133,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
-		keys = {
-			{ "<leader>q", "<cmd>TodoTelescope<cr>", desc = "Todo List" },
-		},
+		event = "BufEnter",
 		opts = {
 			signs = true,
 			keywords = {

@@ -59,7 +59,8 @@ return {
 				"marksman",
 				"taplo",
 				"zls",
-                "ts_ls",
+				"ts_ls",
+				"gopls",
 			}
 			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
