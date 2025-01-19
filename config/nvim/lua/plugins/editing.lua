@@ -40,7 +40,7 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		keys = { "gc" },
+		event = "VeryLazy",
 		config = true,
 	},
 	{
