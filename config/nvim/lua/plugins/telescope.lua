@@ -40,7 +40,9 @@ return {
 
 					layout.prompt.borderchars = require("globals").border_chars_telescope_prompt
 
-					layout.preview.title = ''
+					if layout.preview then
+						layout.preview.title = ''
+					end
 					return layout
 				end
 
