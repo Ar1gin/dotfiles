@@ -4,8 +4,10 @@ return {
 		dir = vim.fn.stdpath("config") .. "/lua/multiline",
 		keys = {
 			{ "<C-n>",  desc = "Surround with newlines" },
-			{ "o",      desc = "Open a new line below" },
-			{ "O",      desc = "Open a new line above" },
+			{ "o",      desc = "Begin a new line below" },
+			{ "O",      desc = "Begin a new line above" },
+			{ "yo",     desc = "Begin a new line below and repeat it [count] times" },
+			{ "yO",     desc = "Begin a new line above and repeat it [count] times" },
 			{ "<C-n>d", desc = "Remove newline surround" },
 			{ "<C-n>D", desc = "Remove all newline surround" },
 			{ "<C-n>f", desc = "Set newline surround" },
@@ -18,6 +20,8 @@ return {
 			vim.keymap.set({ "n", "v" }, "<C-n>", multiline.surround_newlines(""), {})
 			vim.keymap.set("n", "o", multiline.next_surround("\"_S"), {})
 			vim.keymap.set("n", "O", multiline.prev_surround("\"_S"), {})
+			vim.keymap.set("n", "yo", "o", { noremap = vim.v["true"] })
+			vim.keymap.set("n", "yO", "O", { noremap = vim.v["true"] })
 			vim.keymap.set("n", "<C-n>d", multiline.remove_surround, {})
 			vim.keymap.set("n", "<C-n>D", multiline.remove_all_surround, {})
 			vim.keymap.set("n", "<C-n>f", multiline.set_surround, {})
