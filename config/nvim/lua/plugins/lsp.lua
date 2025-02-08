@@ -157,6 +157,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
+					{ name = "render-markdown" },
 				}),
 				mapping = cmp.mapping.preset.insert({
 					["<C-h>"] = cmp.mapping.confirm(),
