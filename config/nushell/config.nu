@@ -78,7 +78,7 @@ $env.config = {
 		algorithm: fuzzy
 		use_ls_colors: false
 	}
-	filesize: { metric: false }
+	filesize: { unit: metric }
 	cursor_shape: {
 		emacs: line
 		vi_insert: line
