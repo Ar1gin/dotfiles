@@ -18,6 +18,8 @@ return {
 				unknown     = { raw = "[?]", rendered = "󰳟 []", highlight = "RenderMarkdownUnknown", scope_highlight = nil },
 				idea        = { raw = "[@]", rendered = "󰳟 []", highlight = "RenderMarkdownIdea", scope_highlight = nil },
 				starred     = { raw = "[*]", rendered = "󰳟 []", highlight = "RenderMarkdownStar", scope_highlight = nil },
+				positive    = { raw = "[+]", rendered = "󰳟 [+]", highlight = "RenderMarkdownPositive", scope_highlight = nil },
+				negative    = { raw = "[=]", rendered = "󰳟 [-]", highlight = "RenderMarkdownNegative", scope_highlight = nil },
 			},
 		},
 		code = {

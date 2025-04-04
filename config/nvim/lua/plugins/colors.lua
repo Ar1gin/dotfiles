@@ -56,6 +56,8 @@ return {
 						["RenderMarkdownUnknown"] = { fg = "#727169" },
 						["RenderMarkdownIdea"] = { fg = "#FFA066" },
 						["RenderMarkdownStar"] = { fg = "#FFA066" },
+						["RenderMarkdownPositive"] = { link = "@diff.plus" },
+						["RenderMarkdownNegative"] = { link = "@diff.minus" },
 						["RenderMarkdownCheckedScope"] = { fg = "#54546D", strikethrough = true },
 						["RenderMarkdownH1"] = { fg = "#957FB8", bg = "#2A2A37" },
 						["RenderMarkdownH1Bg"] = { fg = "#957FB8", bg = "#2A2A37" },
