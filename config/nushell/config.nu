@@ -93,7 +93,7 @@ $env.config = {
 		exit_code: false
 	}
 	history: {
-		sync_on_enter: false
+		sync_on_enter: true
 	}
 }
 
