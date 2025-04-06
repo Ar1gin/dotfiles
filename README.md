@@ -1,6 +1,8 @@
 # Duck's dotfiles
 ## Screenshots
-![Neovim+Wezterm](screenshots/preview_neovim.png)
+2025-04-06 (468f08ad) | 2024-07-03 (ee72f101)
+-|-
+![Neovim+Foot](screenshots/preview_468f08ad.png) | ![Neovim+Wezterm](screenshots/preview_ee72f101.png)
 ## Available configurations
 - Fish
 - Fontconfig
@@ -16,7 +18,7 @@
 - Zellij
 - Zsh
 ## Installation
-Dotfiles are managed by `stow` via `make`.
+Dotfiles are managed by `stow` via `make`. (All files/directores in `config/` are symlinked to `~/.config/`)
 
 Apply dotfiles
 ```bash
