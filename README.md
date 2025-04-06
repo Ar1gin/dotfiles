@@ -2,6 +2,7 @@
 ## Screenshots
 ![Neovim+Wezterm](screenshots/preview_neovim.png)
 ## Available configurations
+- Fish
 - Fontconfig
 - Foot term
 - Kitty
