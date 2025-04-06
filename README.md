@@ -5,6 +5,7 @@
 - Fish
 - Fontconfig
 - Foot term
+- Jujutsu VCS
 - Kitty
 - Neovide
 - Neovim

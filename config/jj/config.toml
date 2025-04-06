@@ -1,0 +1,20 @@
+[ui]
+default-command = "log"
+
+[aliases]
+verify = ["log", "-T", """
+separate("\n",
+	if(signature,
+		separate(" ",
+			label("signature status " ++ signature.status(), signature.status() ++ " singature"),
+			"from",
+			signature.display(),
+			signature.key(),
+		),
+		label("signature status unknown", "not signed"),
+	),
+builtin_log_compact ++ "\n",
+)"""]
+
+[signing]
+backend = "gpg"
