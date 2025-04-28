@@ -1,5 +1,5 @@
 format = '''
-[\[$username@$hostname\]:\[${custom.root}$git_branch${custom.jj-bookmark}\]$git_status$git_state${custom.jj-status}
+[\[$username@$hostname\]:\[$directory$git_branch\]$git_status$git_state
 - $character ](fg:white)
 '''
 
@@ -63,31 +63,3 @@ style = "fg:bright-white"
 format = "$symbol"
 success_symbol = '[\$](fg:bright-white)'
 error_symbol = '[\$](fg:bright-red)'
-
-[custom.root]
-description = "Repo root or directory"
-format = '[$output](fg:bright-yellow)'
-command = "jj root >/dev/null 2>&1 && basename $(jj root) || starship module directory"
-when = true
-
-[custom.jj-bookmark]
-description = "JJ Bookmark for current commit"
-format = '(@[$output](fg:bright-purple))'
-command = """jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '\
-if(empty && description.first_line().len() == 0, "",\
-coalesce(bookmarks, change_id.shortest(3)))\
-'"""
-detect_folders = [".jj"]
-
-[custom.jj-status]
-description = "JJ Status icons (when conflicted/hidden/etc.)"
-format = '( \[[$output](fg:bright-red)\])'
-command = """jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '\
-separate("/",\
-if(conflict, "CONFLICT"),\
-if(divergent, "DIVERGENT"),\
-if(hidden, "HIDDEN"),\
-if(immutable, "IMMUTABLE"),\
-)\
-'"""
-detect_folders = [".jj"]
