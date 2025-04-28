@@ -75,4 +75,8 @@ vim.keymap.set({ "n", "v" }, "H", "<C-u>")
 vim.keymap.set({ "n", "v" }, "<PageDown>", "<C-d>")
 vim.keymap.set({ "n", "v" }, "L", "<C-d>")
 
+-- `s` shortcut is occupied by surround plugin
+vim.keymap.set("n", "<C-s>", "s")
+vim.keymap.set("v", "s", "<Nop>")
+
 require("lazy").setup("plugins")
