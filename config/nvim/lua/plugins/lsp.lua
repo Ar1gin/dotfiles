@@ -61,6 +61,7 @@ return {
 				"zls",
 				"ts_ls",
 				"gopls",
+				"texlab",
 			}
 			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
@@ -88,6 +89,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"hrsh7th/cmp-emoji",
 		},
 		config = function()
 			-- IMPORTANT OPTION!
@@ -158,6 +160,7 @@ return {
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "buffer" },
 					{ name = "render-markdown" },
+					{ name = "emoji" },
 				}),
 				mapping = cmp.mapping.preset.insert({
 					["<C-h>"] = cmp.mapping.confirm(),

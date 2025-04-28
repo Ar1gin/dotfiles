@@ -5,7 +5,7 @@ return {
 			{ "M", desc = "Hop" },
 		},
 		config = function()
-			require("squirrel.utils").key_iter.keys = "hfjdksla"
+			require("squirrel.utils").key_iter.keys = "hgjfkdls"
 			vim.keymap.set({ "n", "v" }, "M", function()
 				vim.cmd(".mark '")
 				require("squirrel.hop").hop()
