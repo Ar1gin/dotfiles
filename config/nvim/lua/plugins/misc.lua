@@ -37,8 +37,9 @@ return {
 	{
 		"backdround/global-note.nvim",
 		keys = {
-			{ "<leader>n", "<cmd>ProjectNote<cr>", desc = "Project Note" },
-			{ "<leader>N", "<cmd>GlobalNote<cr>",  desc = "Global Note" },
+			{ "<leader>nn", "<cmd>ProjectNote<cr>", desc = "Project Note" },
+			{ "<leader>nf", "<cmd>FileNote<cr>",    desc = "File Note" },
+			{ "<leader>N",  "<cmd>GlobalNote<cr>",  desc = "Global Note" },
 		},
 		config = function()
 			local global_note = require("global-note")
@@ -86,7 +87,13 @@ return {
 
 							return project_name .. ".md"
 						end,
-					}
+					},
+					file = {
+						title = "File Note",
+						command_name = "FileNote",
+						directory = vim.fn.getcwd,
+						filename = "notes.md",
+					},
 				},
 			})
 		end
