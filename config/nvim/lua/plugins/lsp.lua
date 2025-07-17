@@ -62,6 +62,7 @@ return {
 				"ts_ls",
 				"gopls",
 				"texlab",
+				"qmlls",
 			}
 			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
@@ -126,7 +127,18 @@ return {
 			for kind, link in pairs(kinds) do
 				vim.api.nvim_set_hl(0, "CmpItemKind" .. kind, { link = link[2] })
 			end
+			local omnicomplete = function(fallback)
+				if cmp.visible() then
+					cmp.mapping.confirm({ select = true })(fallback)
+				else
+					cmp.mapping.complete()(fallback)
+				end
+			end
 			cmp.setup({
+				-- completion = {
+				-- 	autocomplete = false,
+				-- 	completeopt = "menuone",
+				-- },
 				formatting = {
 					format = function(_, vim_item)
 						local custom = kinds[vim_item.kind]
@@ -163,12 +175,20 @@ return {
 					{ name = "emoji" },
 				}),
 				mapping = cmp.mapping.preset.insert({
-					["<C-h>"] = cmp.mapping.confirm(),
+					-- QWERTY mappings
+					["<C-h>"] = omnicomplete,
 					["<C-l>"] = cmp.mapping.abort(),
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-k>"] = cmp.mapping.select_prev_item(),
 					["<A-j>"] = cmp.mapping.scroll_docs(6),
 					["<A-k>"] = cmp.mapping.scroll_docs(-6),
+					-- Colemak mappings
+					["<C-n>"] = omnicomplete,
+					["<C-o>"] = cmp.mapping.abort(),
+					["<C-e>"] = cmp.mapping.select_next_item(),
+					["<C-i>"] = cmp.mapping.select_prev_item(),
+					["<A-e>"] = cmp.mapping.scroll_docs(6),
+					["<A-i>"] = cmp.mapping.scroll_docs(-6),
 				}),
 				window = {
 					completion = {
