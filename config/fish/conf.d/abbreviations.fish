@@ -4,6 +4,10 @@ abbr -a lg lazygit
 abbr -a tx tmux
 abbr -a pc pacman
 abbr -a cl clear
+function fastparentcd
+    echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
+end
+abbr -a dotdot -r "^\.\.+\$" -f fastparentcd
 
 # Git
 abbr -a g git
