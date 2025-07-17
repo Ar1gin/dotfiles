@@ -69,7 +69,7 @@ return {
 		config = function()
 			require('insx.preset.standard').setup({
 				cmdline = { enabled = true },
-				spacing = { enabled = true },
+				spacing = { enabled = false },
 				fast_break = {
 					enabled = true,
 					html_attrs = true,
@@ -77,6 +77,21 @@ return {
 				},
 				fast_wrap = { enabled = true },
 			})
-		end
+		end,
 	},
+	{
+		"nmac427/guess-indent.nvim",
+		event = "InsertEnter",
+		opts = {
+			auto_cmd = true,
+			on_tab_options = {
+				["expandtab"] = false,
+			},
+			on_space_options = {
+				["expandtab"] = true,
+				["tabstop"] = "detected",
+				["shiftwidth"] = "detected",
+			},
+		},
+	}
 }
