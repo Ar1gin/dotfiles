@@ -1,16 +1,5 @@
 return {
 	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup({ "*" })
-			vim.api.nvim_create_autocmd({ "BufNew", "VimEnter" }, {
-				callback = function(ev)
-					require("colorizer").attach_to_buffer(ev.buf)
-				end
-			})
-		end,
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		config = true,
 	},
