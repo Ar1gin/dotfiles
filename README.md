@@ -14,6 +14,7 @@ Crossed out are not used nor maintained
 - ~Neovide~
 - Neovim
 - ~Nushell~
+- Quickshell
 - Starship
 - Tmux
 - ~Wezterm~
