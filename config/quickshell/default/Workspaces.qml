@@ -1,6 +1,8 @@
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
+import "../components"
+import "../config"
 
 RowLayout {
     spacing: Constants.borderHeight

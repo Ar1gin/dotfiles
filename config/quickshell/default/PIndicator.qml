@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
+import "../components"
+import "../config"
 
 Rectangle {
     id: indicator

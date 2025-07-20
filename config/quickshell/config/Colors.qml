@@ -2,6 +2,7 @@ pragma Singleton
 
 import QtQml
 import QtQuick
+import "../components"
 
 QtObject {
     readonly property color none: "#00000000"
@@ -19,6 +20,9 @@ QtObject {
     readonly property color workspaceButtonActiveBorder: "#404058"
     readonly property color workspaceButtonInactive: "#2A2A37"
     readonly property color workspaceButtonInactiveBorder: "#363646"
+
+    readonly property color panelBorder: "#363646"
+    readonly property color panelBackground: "#16161D"
 
     readonly property color clockBarNoon: "#836F4A"
     readonly property color clockBarNoonBorder: "#F9D791"

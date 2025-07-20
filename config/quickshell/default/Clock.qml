@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
+import "../components"
+import "../config"
 
 RowLayout {
     Rectangle {
@@ -19,7 +21,7 @@ RowLayout {
             mainColor: Colors.clockBarNoonBorder
             secondaryColor: Colors.clockBarNoon
             borderWidth: Constants.borderHeight
-            patternSource: "pattern_day.png"
+            patternSource: "../assets/pattern_day.png"
         }
         PText {
             font: Constants.mainFont

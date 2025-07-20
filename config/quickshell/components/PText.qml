@@ -1,5 +1,6 @@
 import QtQuick.Effects
 import QtQuick
+import "../config"
 
 // Fixed text
 

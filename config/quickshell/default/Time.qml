@@ -1,6 +1,7 @@
 pragma Singleton
 import Quickshell.Io
 import QtQuick
+import "../config"
 
 Item {
     id: time

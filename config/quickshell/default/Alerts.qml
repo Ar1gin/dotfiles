@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
+import "../components"
+import "../config"
 
 Item {
     id: root
@@ -19,7 +21,7 @@ Item {
             mainColor: Colors.indicatorAlertBorder
             secondaryColor: Colors.indicatorAlert
             borderWidth: Constants.borderHeight
-            patternSource: "pattern_alert.png"
+            patternSource: "../assets/pattern_alert.png"
             visible: modelData[0]
             PText {
                 anchors.fill: parent

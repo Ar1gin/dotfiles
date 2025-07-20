@@ -7,6 +7,7 @@ QtObject {
     readonly property real barHeight: 32
     readonly property real borderHeight: 2
     readonly property int textShadowOffset: 2
+    readonly property int buttonAnimationDuration: 100
 
     readonly property font mainFont: ({
             family: "JetBrainsMono Nerd Font",
