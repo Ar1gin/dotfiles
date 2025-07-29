@@ -81,7 +81,7 @@ return {
 	},
 	{
 		"nmac427/guess-indent.nvim",
-		event = "InsertEnter",
+		lazy = false,
 		opts = {
 			auto_cmd = true,
 			on_tab_options = {
