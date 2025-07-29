@@ -78,6 +78,7 @@ return {
 						i = {
 							["<Esc>"] = false,
 							["<C-c>"] = false,
+							-- QWERTY mappings
 							["<C-j>"] = actions.move_selection_next,
 							["<C-k>"] = actions.move_selection_previous,
 							["<C-h>"] = actions.select_default,
@@ -86,6 +87,15 @@ return {
 							["<M-k>"] = actions.preview_scrolling_up,
 							["<M-h>"] = actions.preview_scrolling_left,
 							["<M-l>"] = actions.preview_scrolling_right,
+							-- Colemak mappings
+							["<C-e>"] = actions.move_selection_next,
+							["<C-i>"] = actions.move_selection_previous,
+							["<C-n>"] = actions.select_default,
+							["<C-o>"] = actions.close,
+							["<M-e>"] = actions.preview_scrolling_down,
+							["<M-i>"] = actions.preview_scrolling_up,
+							["<M-n>"] = actions.preview_scrolling_left,
+							["<M-o>"] = actions.preview_scrolling_right,
 							-- TODO: actions.select_{horizontal, vertical, tab}
 						},
 					},
