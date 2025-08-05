@@ -1,4 +1,3 @@
-import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "../components"
@@ -12,17 +11,24 @@ RowLayout {
         implicitHeight: parent.height * 0.2
     }
     Repeater {
-        model: Hyprland.workspaces
+        model: WM.workspaces
         Rectangle {
             required property var modelData
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.minimumWidth: height
             Layout.maximumWidth: height * 2
-            color: Hyprland.focusedWorkspace == modelData ? Colors.workspaceButtonMain : Colors.workspaceButtonInactive
+            color: modelData.focused ? Colors.workspaceButtonMain : Colors.workspaceButtonInactive
             border.width: Constants.borderHeight
-            border.color: Hyprland.focusedWorkspace == modelData ? Colors.workspaceButtonMainBorder : Colors.workspaceButtonInactiveBorder
+            border.color: modelData.focused ? Colors.workspaceButtonMainBorder : Colors.workspaceButtonInactiveBorder
+            PIcon {
+                visible: !!modelData.icon
+                anchors.fill: parent
+                anchors.margins: Constants.borderHeight * 1.5
+                name: modelData.icon
+            }
             PText {
+                visible: !modelData.icon
                 anchors.fill: parent
                 font: Constants.mainFont
                 color: Colors.foreground
