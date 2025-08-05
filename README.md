@@ -9,10 +9,12 @@ Crossed out are not used nor maintained
 - Fish
 - Fontconfig
 - Foot term
+- Fuzzel
 - Jujutsu VCS
 - ~Kitty~
 - ~Neovide~
 - Neovim
+- Niri
 - ~Nushell~
 - Quickshell
 - Starship
@@ -50,6 +52,14 @@ Crossed out are not used nor maintained
 - `ts_ls` for `typescript`
 - `gopls` for `go`
 - `texlab` for `tex`
+
+### Niri
+- [qt6ct](https://github.com/trialuser02/qt6ct) to style QT apps
+- [Quickshell](https://quickshell.org/) as Bar
+- [SWWW](https://github.com/LGFae/swww) as Wallpaper Engine
+- [xwayland-satellite](https://github.com/Supreeeme/xwayland-satellite) to run X11 apps
+- [Fuzzel](https://codeberg.org/dnkl/fuzzel) as Runner
+- [Firefox](https://www.firefox.com/) as Browser
 
 ## Installation
 Dotfiles are managed by `stow` via `make`. (All files/directores in `config/` are symlinked to `~/.config/`)
