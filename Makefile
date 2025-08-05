@@ -3,10 +3,15 @@
 STOW_TARGET = $$HOME"/.config"
 STOW_SOURCE = "./config"
 
-generated = config/nushell/zoxide.nu
+generated = \
+	config/nushell/zoxide.nu \
+	config/quickshell/.qmlls.ini \
 
 config/nushell/zoxide.nu:
 	zoxide init nushell > config/nushell/zoxide.nu
+
+config/quickshell/.qmlls.ini:
+	touch config/quickshell/.qmlls.ini
 
 clear: unstow
 	rm $(generated)
