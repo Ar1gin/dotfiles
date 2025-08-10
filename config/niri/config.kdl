@@ -80,10 +80,16 @@ layout {
 
 overview {
     zoom 0.5
-    backdrop-color "#332426"
+    backdrop-color "#262433"
+    workspace-shadow {
+        softness 16
+        spread 8
+        offset x=0 y=0
+        color "#00000080"
+    }
 }
 
-spawn-at-startup "qs"
+spawn-at-startup "qs" "-c" "overview"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "xwayland-satellite"
 prefer-no-csd
@@ -122,11 +128,11 @@ window-rule {
     }
 }
 
-// layer-rule {
-//     match namespace=r#"^swww-daemon$"#
-//
-//     place-within-backdrop true
-// }
+layer-rule {
+    match namespace=r#"^quickshell$"#
+
+    place-within-backdrop true
+}
 
 layer-rule {
     match namespace="^notifications$"
