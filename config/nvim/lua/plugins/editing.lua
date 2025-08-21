@@ -64,22 +64,6 @@ return {
 		config = true,
 	},
 	{
-		"hrsh7th/nvim-insx",
-		event = "InsertEnter",
-		config = function()
-			require('insx.preset.standard').setup({
-				cmdline = { enabled = true },
-				spacing = { enabled = false },
-				fast_break = {
-					enabled = true,
-					html_attrs = true,
-					arguments = true,
-				},
-				fast_wrap = { enabled = true },
-			})
-		end,
-	},
-	{
 		"nmac427/guess-indent.nvim",
 		lazy = false,
 		opts = {
