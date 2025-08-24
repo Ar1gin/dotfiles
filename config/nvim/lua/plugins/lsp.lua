@@ -91,6 +91,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -132,37 +133,63 @@ return {
 					cmp.mapping.complete()(fallback)
 				end
 			end
+			local formatting = {
+				format = function(_, vim_item)
+					local custom = kinds[vim_item.kind]
+					if custom then
+						vim_item.kind = string.format("%-12s", custom[1])
+					else
+						vim_item.kind = string.format("%-12s", vim_item.kind)
+					end
+					if vim_item.abbr then
+						local content = vim_item.abbr
+						local fixed_width = 32
+						if #content > fixed_width then
+							local ellipsis = ""
+							vim_item.abbr = " " .. vim.fn.strcharpart(content, 0, fixed_width - 1) .. ellipsis
+						else
+							vim_item.abbr = " " .. string.format("%-32s", content)
+						end
+					end
+					vim_item.menu = ""
+					return vim_item
+				end,
+				fields = {
+					"abbr",
+					"kind",
+				},
+			}
+			local mapping = ({
+				-- QWERTY mappings
+				["<C-h>"] = { i = omnicomplete, c = omnicomplete },
+				["<C-l>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
+				["<C-j>"] = { i = cmp.mapping.select_next_item(), c = cmp.mapping.select_next_item() },
+				["<C-k>"] = { i = cmp.mapping.select_prev_item(), c = cmp.mapping.select_prev_item() },
+				["<A-j>"] = { i = cmp.mapping.scroll_docs(6), c = cmp.mapping.scroll_docs(6) },
+				["<A-k>"] = { i = cmp.mapping.scroll_docs(-6), c = cmp.mapping.scroll_docs(-6) },
+				-- Colemak mappings
+				["<C-n>"] = { i = omnicomplete, c = omnicomplete },
+				["<C-o>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
+				["<C-e>"] = { i = cmp.mapping.select_next_item(), c = cmp.mapping.select_next_item() },
+				["<C-i>"] = { i = cmp.mapping.select_prev_item(), c = cmp.mapping.select_prev_item() },
+				["<A-e>"] = { i = cmp.mapping.scroll_docs(6), c = cmp.mapping.scroll_docs(6) },
+				["<A-i>"] = { i = cmp.mapping.scroll_docs(-6), c = cmp.mapping.scroll_docs(-6) },
+			})
+			local window = {
+				completion = {
+					side_padding = 0,
+				},
+				documentation = {
+					max_width = 64,
+					max_height = 16,
+				},
+			}
 			cmp.setup({
 				-- completion = {
-				-- 	autocomplete = false,
-				-- 	completeopt = "menuone",
+				-- 	autocomplete = true,
+				-- 	completeopt = "menu,menuone",
 				-- },
-				formatting = {
-					format = function(_, vim_item)
-						local custom = kinds[vim_item.kind]
-						if custom then
-							vim_item.kind = string.format("%-12s", custom[1])
-						else
-							vim_item.kind = string.format("%-12s", vim_item.kind)
-						end
-						if vim_item.abbr then
-							local content = vim_item.abbr
-							local fixed_width = 32
-							if #content > fixed_width then
-								local ellipsis = ""
-								vim_item.abbr = " " .. vim.fn.strcharpart(content, 0, fixed_width - 1) .. ellipsis
-							else
-								vim_item.abbr = " " .. string.format("%-32s", content)
-							end
-						end
-						vim_item.menu = ""
-						return vim_item
-					end,
-					fields = {
-						"abbr",
-						"kind",
-					}
-				},
+				formatting = formatting,
 				sources = cmp.config.sources({
 					-- FIXME: Suggestion sorting is bogus;
 					-- All the useful suggestions are at the bottom
@@ -173,32 +200,25 @@ return {
 					{ name = "emoji" },
 					{ name = "path" },
 				}),
-				mapping = cmp.mapping.preset.insert({
-					-- QWERTY mappings
-					["<C-h>"] = omnicomplete,
-					["<C-l>"] = cmp.mapping.abort(),
-					["<C-j>"] = cmp.mapping.select_next_item(),
-					["<C-k>"] = cmp.mapping.select_prev_item(),
-					["<A-j>"] = cmp.mapping.scroll_docs(6),
-					["<A-k>"] = cmp.mapping.scroll_docs(-6),
-					-- Colemak mappings
-					["<C-n>"] = omnicomplete,
-					["<C-o>"] = cmp.mapping.abort(),
-					["<C-e>"] = cmp.mapping.select_next_item(),
-					["<C-i>"] = cmp.mapping.select_prev_item(),
-					["<A-e>"] = cmp.mapping.scroll_docs(6),
-					["<A-i>"] = cmp.mapping.scroll_docs(-6),
-				}),
-				window = {
-					completion = {
-						side_padding = 0,
-					},
-					documentation = {
-						max_width = 64,
-						max_height = 16,
-					},
-				}
+				mapping = cmp.mapping.preset.insert(mapping),
+				window = window,
 			})
-		end
+			cmp.setup.cmdline("/", {
+				sources = cmp.config.sources({
+					{ name = "buffer" },
+				}),
+				mapping = cmp.mapping.preset.cmdline(mapping),
+			})
+			cmp.setup.cmdline(":", {
+				sources = cmp.config.sources({
+					{ name = "path" },
+					{
+						name = 'cmdline',
+						option = { ignore_cmds = { 'Man', '!' } }
+					},
+				}),
+				mapping = cmp.mapping.preset.cmdline(mapping),
+			})
+		end,
 	},
 }
