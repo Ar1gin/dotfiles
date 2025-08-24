@@ -16,8 +16,8 @@ abbr -a gs git status
 abbr -a gss git status -s
 abbr -a gc git commit
 abbr -a gca git commit --amend
-abbr -a gr git rebase
-abbr -a grc git rebase --continue
+abbr -a gb git rebase
+abbr -a gbc git rebase --continue
 abbr -a gg git push
 abbr -a gp git pull
 abbr -a gw git switch
@@ -32,3 +32,9 @@ abbr -a ges git remote show -n
 abbr -a gf git fetch
 abbr -a gd git diff
 abbr -a gds git diff --staged
+
+# Zig
+abbr -a zb zig build
+abbr -a zbr zig build run
+abbr -a zbe zig build-exe
+abbr -a zbt zig build test

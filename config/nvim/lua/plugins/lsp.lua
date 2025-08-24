@@ -79,9 +79,6 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
 					vim.api.nvim_buf_create_user_command(ev.buf, "Format", function(_)
 						vim.lsp.buf.format()
 					end, { desc = "Format current buffer with LSP" })
@@ -168,16 +165,16 @@ return {
 			local mapping = ({
 				-- QWERTY mappings
 				["<C-h>"] = { i = omnicomplete, c = omnicomplete },
-				["<C-l>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
 				["<C-j>"] = { i = cmp.mapping.select_next_item(), c = cmp.mapping.select_next_item() },
 				["<C-k>"] = { i = cmp.mapping.select_prev_item(), c = cmp.mapping.select_prev_item() },
+				["<C-l>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
 				["<A-j>"] = { i = cmp.mapping.scroll_docs(6), c = cmp.mapping.scroll_docs(6) },
 				["<A-k>"] = { i = cmp.mapping.scroll_docs(-6), c = cmp.mapping.scroll_docs(-6) },
 				-- Colemak mappings
 				["<C-n>"] = { i = omnicomplete, c = omnicomplete },
-				["<C-o>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
 				["<C-e>"] = { i = cmp.mapping.select_next_item(), c = cmp.mapping.select_next_item() },
 				["<C-i>"] = { i = cmp.mapping.select_prev_item(), c = cmp.mapping.select_prev_item() },
+				["<C-o>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
 				["<A-e>"] = { i = cmp.mapping.scroll_docs(6), c = cmp.mapping.scroll_docs(6) },
 				["<A-i>"] = { i = cmp.mapping.scroll_docs(-6), c = cmp.mapping.scroll_docs(-6) },
 			})
