@@ -49,6 +49,7 @@ vim.opt.virtualedit = "all"
 vim.opt.timeout = false
 vim.opt.showmode = false
 vim.opt.digraph = true
+vim.opt.pumheight = 7
 vim.diagnostic.config({ virtual_text = false, underline = false, signs = false })
 
 -- FTPlugin, begone
@@ -80,4 +81,8 @@ vim.keymap.set({ "n", "v" }, "L", "<C-d>")
 vim.keymap.set("n", "<C-s>", "s")
 vim.keymap.set("v", "s", "<Nop>")
 
+vim.keymap.set("i", "<C-f>", "<C-n>")
+
 require("lazy").setup("plugins")
+
+vim.fn.digraph_setlist(require("digraphs"))

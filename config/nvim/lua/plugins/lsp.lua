@@ -19,7 +19,7 @@ return {
 		lazy = false,
 		keys = {
 			{ "<leader>w", "<cmd>Format<cr>",               desc = "Format" },
-			{ "<leader>W", "<cmd>Format<cr><cmd>write<cr>", desc = "Format & Write" }
+			{ "<leader>W", "<cmd>Format<cr><cmd>write<cr>", desc = "Format & Write" },
 		},
 		config = function()
 			require("mason").setup()
@@ -84,17 +84,15 @@ return {
 		end,
 	},
 	{
-
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-path",
 		},
 		config = function()
-			-- IMPORTANT OPTION!
-			vim.opt.pumheight = 7
 			local cmp = require("cmp")
 			local kinds = {
 				Field = { " Field", "Identifier" },
@@ -115,11 +113,11 @@ return {
 				Property = { "󰜢 Field", "Identifier" },
 				Reference = { " Reference", "Statement" },
 				Text = { " Text", "String" },
+				Folder = { "󰉋 Folder", "Statement" },
 				-- Left as an exercise to the reader
 				-- Constructor = "",
 				-- Unit = "",
 				-- Color = "󰏘",
-				-- Folder = "󰉋",
 				-- Event = "",
 				-- Operator = "󰆕",
 				-- TypeParameter = "󰅲",
@@ -173,6 +171,7 @@ return {
 					{ name = "buffer" },
 					{ name = "render-markdown" },
 					{ name = "emoji" },
+					{ name = "path" },
 				}),
 				mapping = cmp.mapping.preset.insert({
 					-- QWERTY mappings
