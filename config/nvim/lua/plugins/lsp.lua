@@ -10,6 +10,12 @@ return {
 		build = ":TSUpdate"
 	},
 	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			automatic_enable = false,
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
