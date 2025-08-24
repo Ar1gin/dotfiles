@@ -4,6 +4,12 @@ set -gx MANPAGER nvim +Man!
 set -U fish_greeting
 set history_ignore rm
 
+if test -n "$fish_private_mode"
+    function fish_title
+        echo "Private Shell"
+    end
+end
+
 function ll
     command exa -l $argv
 end
