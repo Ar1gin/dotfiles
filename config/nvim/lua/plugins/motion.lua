@@ -2,11 +2,11 @@ return {
 	{
 		"xiaoshihou514/squirrel.nvim",
 		keys = {
-			{ "M", desc = "Hop" },
+			{ "<C-m>", desc = "Hop" },
 		},
 		config = function()
-			require("squirrel.utils").key_iter.keys = "hgjfkdls"
-			vim.keymap.set({ "n", "v" }, "M", function()
+			require("squirrel.utils").key_iter.keys = "ntesiroa"
+			vim.keymap.set({ "n", "v" }, "<C-m>", function()
 				vim.cmd(".mark '")
 				require("squirrel.hop").hop()
 			end)
@@ -15,7 +15,7 @@ return {
 	{
 		"ggandor/leap.nvim",
 		keys = {
-			{ "<C-m>", "<Plug>(leap)", desc = "Leap" },
+			{ "M", "<Plug>(leap)", desc = "Leap" },
 		},
 		config = function()
 			local leap = require("leap")
@@ -28,10 +28,9 @@ return {
 		config = function()
 			local move_actions = {
 				["f"] = "function",
-				["c"] = "class",
+				["t"] = "class",
 				["r"] = "return",
-				["p"] = "parameter",
-				["a"] = "attribute",
+				["a"] = "parameter",
 				["d"] = "comment",
 			}
 			local goto_next_start = {}
@@ -64,18 +63,16 @@ return {
 						enable = true,
 						lookahead = true,
 						keymaps = {
-							["aF"] = { query = "@function.outer", desc = "function" },
-							["iF"] = { query = "@function.inner", desc = "function" },
-							["aT"] = { query = "@class.outer", desc = "type" },
-							["iT"] = { query = "@class.inner", desc = "type" },
-							["iA"] = { query = "@assignment.lhs", desc = "assignment" },
-							["aA"] = { query = "@assignment.rhs", desc = "assignment" },
-							["aP"] = { query = "@parameter.outer", desc = "parameter" },
-							["iP"] = { query = "@parameter.inner", desc = "parameter" },
-							["aC"] = { query = "@call.outer", desc = "call" },
-							["iC"] = { query = "@call.inner", desc = "call" },
-							["aD"] = { query = "@comment.outer", desc = "comment" },
-							["iD"] = { query = "@comment.inner", desc = "comment" },
+							["af"] = { query = "@function.outer", desc = "function" },
+							["if"] = { query = "@function.inner", desc = "function" },
+							["at"] = { query = "@class.outer", desc = "type" },
+							["it"] = { query = "@class.inner", desc = "type" },
+							["aa"] = { query = "@parameter.outer", desc = "parameter" },
+							["ia"] = { query = "@parameter.inner", desc = "parameter" },
+							["ac"] = { query = "@call.outer", desc = "call" },
+							["ic"] = { query = "@call.inner", desc = "call" },
+							["ad"] = { query = "@comment.outer", desc = "comment" },
+							["id"] = { query = "@comment.inner", desc = "comment" },
 						},
 						include_surrounding_whitespace = true,
 					},
