@@ -48,7 +48,6 @@ vim.opt.fillchars = { eob = " " }
 vim.opt.virtualedit = "all"
 vim.opt.timeout = false
 vim.opt.showmode = false
-vim.opt.digraph = true
 vim.opt.pumheight = 7
 vim.diagnostic.config({ virtual_text = false, underline = false, signs = false })
 

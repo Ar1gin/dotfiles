@@ -1,6 +1,7 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
 		config = true,
 	},
 	{
@@ -17,6 +18,7 @@ return {
 	},
 	{
 		"stevearc/dressing.nvim",
+		event = "VeryLazy",
 		opts = {
 			input = {
 				border = require("globals").border_chars,

@@ -95,7 +95,9 @@ return {
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"L3MON4D3/LuaSnip",
 		},
+		event = "VeryLazy",
 		config = function()
 			local cmp = require("cmp")
 			local kinds = {
@@ -193,6 +195,11 @@ return {
 				-- 	completeopt = "menu,menuone",
 				-- },
 				formatting = formatting,
+				snippet = {
+					expand = function(args)
+						require('luasnip').lsp_expand(args.body)
+					end,
+				},
 				sources = cmp.config.sources({
 					-- FIXME: Suggestion sorting is bogus;
 					-- All the useful suggestions are at the bottom
@@ -203,14 +210,14 @@ return {
 					{ name = "emoji" },
 					{ name = "path" },
 				}),
-				mapping = cmp.mapping.preset.insert(mapping),
+				mapping = mapping,
 				window = window,
 			})
 			cmp.setup.cmdline("/", {
 				sources = cmp.config.sources({
 					{ name = "buffer" },
 				}),
-				mapping = cmp.mapping.preset.cmdline(mapping),
+				mapping = mapping,
 			})
 			cmp.setup.cmdline(":", {
 				sources = cmp.config.sources({
@@ -220,7 +227,7 @@ return {
 						option = { ignore_cmds = { 'Man', '!' } }
 					},
 				}),
-				mapping = cmp.mapping.preset.cmdline(mapping),
+				mapping = mapping,
 			})
 		end,
 	},

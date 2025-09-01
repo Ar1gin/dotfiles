@@ -13,16 +13,16 @@ return {
 			{ "<leader>/",  desc = "FZF In File" },
 			{ "<leader>G",  desc = "Grep Text" },
 			{ "<leader>Z",  desc = "Buffer Telescope Menu" },
-			{ "<leader>s",  desc = "Local Symbols" },
-			{ "<leader>S",  desc = "Global Symbols" },
 			{ "<leader>d",  desc = "Local Diagnostics" },
 			{ "<leader>D",  desc = "Global Diagnostics" },
 			{ "<leader>gc", desc = "List Commits" },
 			{ "<leader>gC", desc = "List All Commits" },
 			{ "<leader>gs", desc = "Git Status" },
 			{ "<leader>hk", desc = "Search keymaps" },
-			{ "gr",         desc = "References" },
-			{ "gd",         desc = "Definitions" },
+			{ "gO",         desc = "Local Symbols" },
+			{ "gS",         desc = "Global Symbols" },
+			{ "grr",        desc = "References" },
+			{ "gri",        desc = "Definitions" },
 		},
 		config = function()
 			local actions = require("telescope.actions")
@@ -115,8 +115,6 @@ return {
 			vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, {})
 			vim.keymap.set("n", "<leader>G", builtin.live_grep, {})
 			vim.keymap.set("n", "<leader>Z", builtin.buffers, {})
-			vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, {})
-			vim.keymap.set("n", "<leader>S", builtin.lsp_workspace_symbols, {})
 			vim.keymap.set("n", "<leader>d", function()
 				builtin.diagnostics({
 					bufnr = 0,
@@ -128,8 +126,10 @@ return {
 			vim.keymap.set("n", "<leader>gC", builtin.git_commits, {})
 			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 			vim.keymap.set("n", "<leader>hk", builtin.keymaps, {})
-			vim.keymap.set("n", "gr", builtin.lsp_references, {})
-			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
+			vim.keymap.set("n", "gO", builtin.lsp_document_symbols, {})
+			vim.keymap.set("n", "gS", builtin.lsp_workspace_symbols, {})
+			vim.keymap.set("n", "grr", builtin.lsp_references, {})
+			vim.keymap.set("n", "gri", builtin.lsp_definitions, {})
 			vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "FloatBorder" })
 		end,
 	},
@@ -139,7 +139,7 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 		keys = {
-			{ "<leader>a", desc = "Code Actions" },
+			{ "gra", desc = "Code Actions" },
 		},
 		config = function()
 			require("actions-preview").setup({
@@ -158,7 +158,7 @@ return {
 					},
 				},
 			})
-			vim.keymap.set({ "n", "v" }, "<leader>a", require("actions-preview").code_actions)
+			vim.keymap.set({ "n", "v" }, "gra", require("actions-preview").code_actions)
 		end,
 	},
 	{

@@ -14,7 +14,7 @@ return {
 			if ls.choice_active() then
 				ls.change_choice(1)
 			else
-				return "\t"
+				vim.api.nvim_feedkeys("\t", "n", false);
 			end
 		end, { silent = true })
 
