@@ -4,33 +4,23 @@
 -|-
 ![Neovim+Foot](screenshots/preview_468f08ad.png) | ![Neovim+Wezterm](screenshots/preview_ee72f101.png)
 ## Available configurations
-Crossed out are not used nor maintained
-
 - Fish
 - Fontconfig
 - Foot term
 - Fuzzel
-- Jujutsu VCS
-- ~Kitty~
-- ~Neovide~
 - Neovim
 - Niri
-- ~Nushell~
 - Quickshell
 - Starship
 - Tmux
-- ~Wezterm~
-- ~Zellij~
-- ~Zsh~
 ## Requirements
 
 ### General
 - [GNU Make](https://www.gnu.org/software/make/) (initializes some auto-generated files)
 	- [GNU Stow](https://www.gnu.org/software/stow/) (manages symlinks)
 
-### Any shell
+### Shell
 - [Starship](https://starship.rs/)
-	- [Jujutsu](https://github.com/jj-vcs/jj)
 	- Git
 - [Zoxide](https://github.com/ajeetdsouza/zoxide)
 
@@ -65,21 +55,18 @@ Crossed out are not used nor maintained
 Dotfiles are managed by `stow` via `make`. (All files/directores in `config/` are symlinked to `~/.config/`)
 
 Apply dotfiles
-```bash
+```sh
 make stow
 ```
 
 Unapply dotfiles
-```bash
+```sh
 make unstow
 ```
 
 Reapply dotfiles
-```bash
+```sh
 make restow
 ```
 
 These commands are here mostly as a reminder, unless you want to use all of my dotfiles.
-## License
-I don't really care about licenses, you are free to copy/edit/share the dotfiles.
-Some artwork included in the repository is not owned by me, look for `README.txt` files which contain ownership information.
