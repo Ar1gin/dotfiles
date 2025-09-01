@@ -8,6 +8,7 @@
 - Fontconfig
 - Foot term
 - Fuzzel
+- Ghostty
 - Neovim
 - Niri
 - Quickshell
@@ -50,6 +51,7 @@
 - [xwayland-satellite](https://github.com/Supreeeme/xwayland-satellite) to run X11 apps
 - [Fuzzel](https://codeberg.org/dnkl/fuzzel) as Runner
 - [Firefox](https://www.firefox.com/) as Browser
+- [Ghostty](https://ghostty.org/) as Terminal Emulator
 
 ## Installation
 Dotfiles are managed by `stow` via `make`. (All files/directores in `config/` are symlinked to `~/.config/`)

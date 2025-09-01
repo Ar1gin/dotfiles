@@ -89,6 +89,7 @@ overview {
     }
 }
 
+spawn-at-startup "ghostty" "--launched-from=systemd"
 spawn-at-startup "qs" "-c" "overview"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "xwayland-satellite"
@@ -143,7 +144,7 @@ layer-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Run Foot" { spawn "foot"; }
+    Mod+T hotkey-overlay-title="Run Ghostty" { spawn "ghostty"; }
     Mod+R hotkey-overlay-title="Run Fuzzel" { spawn "fuzzel"; }
     // Mod+Q hotkey-overlay-title="Lock the Screen" { spawn "qs"; }
     Mod+X hotkey-overlay-title="Run Firefox" { spawn "firefox"; }

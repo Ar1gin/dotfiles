@@ -1,0 +1,41 @@
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+adjust-cell-height = -16.66666667%
+adjust-cursor-height = -16.66666667%
+
+font-style = false
+font-style-bold = false
+font-style-italic = false
+font-style-bold-italic = false
+font-feature = "-calt,+cv18,+cv19,+cv14"
+freetype-load-flags = "force-autohint"
+
+keybind = "ctrl+alt+r=reload_config"
+
+foreground = #c5c8c6
+background = #1c1d27
+palette =  0=#282a2e
+palette =  1=#a54242
+palette =  2=#8c9440
+palette =  3=#de935f
+palette =  4=#5f819d
+palette =  5=#85678f
+palette =  6=#5e8d87
+palette =  7=#707880
+palette =  8=#373b41
+palette =  9=#ff5555
+palette = 10=#b5bd68
+palette = 11=#f0c674
+palette = 12=#81a2be
+palette = 13=#b294bb
+palette = 14=#8abeb7
+palette = 15=#c5c8c6
+
+background-opacity = 0.9375
+custom-shader = "cursor_smear.glsl"
+
+resize-overlay = never
+focus-follows-mouse = true
+# linux-cgroup = single-instance
+auto-update = off
+gtk-single-instance = true
