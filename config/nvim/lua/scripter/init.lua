@@ -1,3 +1,5 @@
+local presets = require("scripter.presets")
+
 local M = {}
 
 M.resolve = function(char)
@@ -55,13 +57,15 @@ M.resolve = function(char)
 end
 
 M.setup = function(opts)
-	M.script = {}
-	M.current_script = {}
+	M.default = opts.default or presets.none
+	M.script = M.default
+	M.current_script = M.default
 	M.consume = opts.consume or false
 	M.backlog = ""
 	M.mark_namespace = vim.api.nvim_create_namespace("Scripter")
 	M.mark_id = nil
 	M.highlight = opts.highlight or "@comment"
+	M.temporary = false
 	local group = vim.api.nvim_create_augroup("Scripter", {})
 	M.group = group
 	vim.api.nvim_create_autocmd({ "InsertCharPre" }, {
@@ -91,11 +95,12 @@ M.upadte_mark = function()
 		M.mark_id = nil
 	end
 	if M.current_script.stopper ~= nil then
+		local cursor = vim.api.nvim_win_get_cursor(0)
 		M.mark_id = vim.api.nvim_buf_set_extmark(
 			0,
 			M.mark_namespace,
-			vim.v.lnum - 1,
-			-1,
+			cursor[1] - 1,
+			cursor[2],
 			{
 				virt_text = { { M.current_script.stopper[M.upper and 2 or 1], M.highlight } },
 				virt_text_pos = "overlay",
@@ -105,40 +110,26 @@ M.upadte_mark = function()
 end
 
 M.reset = function()
+	if M.temporary then
+		M.script = M.default
+		M.temporary = false
+	end
 	M.current_script = M.script
 	M.backlog = ""
 	M.upper = false
 	M.upadte_mark()
 end
 
-M.set_script = function(script)
+M.set_script = function(script, temporary)
 	M.script = script
 	M.current_script = script
-end
-
-M.autoscript = function(table)
-	local output = {}
-	for i = 1, #table, 3 do
-		local path = table[i]
-		local cmod = output
-		for j = 1, string.len(path) do
-			local dir = string.sub(path, j, j)
-			if cmod[dir] == nil then
-				cmod[dir] = { stop = string.len(path) == j }
-			else
-				cmod[dir].stop = false
-			end
-			cmod = cmod[dir]
-		end
-		cmod.stopper = { table[i + 1], table[i + 2] }
-	end
-	return output
+	M.temporary = temporary
 end
 
 M.mapping = {}
-M.mapping.set_script = function(script)
+M.mapping.set_script = function(script, temporary)
 	return function()
-		M.set_script(script)
+		M.set_script(script, temporary)
 	end
 end
 

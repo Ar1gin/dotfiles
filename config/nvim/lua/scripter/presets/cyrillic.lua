@@ -1,6 +1,6 @@
-local scripter = require("scripter")
+local auto = require("scripter.presets.auto")
 
-return scripter.autoscript({
+return auto.autoscript({
 	"zh", "ж", "Ж",
 	"ch", "ч", "Ч",
 	"sh", "ш", "Ш",
