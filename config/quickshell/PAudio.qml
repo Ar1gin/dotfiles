@@ -1,8 +1,8 @@
 import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
-import "../components"
-import "../config"
+import "components"
+import "config"
 
 Rectangle {
     id: audio

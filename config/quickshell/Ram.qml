@@ -2,7 +2,7 @@ pragma Singleton
 import Quickshell
 import Quickshell.Io
 import QtQuick
-import "../config"
+import "config"
 
 Item {
     id: ram

@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
-import "../components"
-import "../config"
+import "components"
+import "config"
 
 RowLayout {
     Rectangle {

@@ -1,7 +1,7 @@
 import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
-import "../config"
+import "config"
 
 RowLayout {
     spacing: Constants.borderHeight

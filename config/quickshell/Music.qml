@@ -1,8 +1,8 @@
 import Quickshell.Services.Mpris
 import QtQuick
 import QtQuick.Layouts
-import "../components"
-import "../config"
+import "components"
+import "config"
 
 Item {
     id: music

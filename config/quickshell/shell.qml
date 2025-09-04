@@ -3,8 +3,7 @@ import Quickshell.Wayland
 import QtCore
 import QtQuick
 import QtQuick.Layouts
-import "../config"
-import "../default"
+import "config"
 
 ShellRoot {
     Variants {
@@ -23,7 +22,7 @@ ShellRoot {
 
             Image {
                 anchors.fill: parent
-                source: "../assets/pattern_background.png"
+                source: "assets/pattern_background.png"
                 smooth: false
                 fillMode: Image.Tile
             }
