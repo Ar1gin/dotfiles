@@ -85,3 +85,5 @@ vim.keymap.set("i", "<C-f>", "<C-n>")
 require("lazy").setup("plugins")
 
 vim.fn.digraph_setlist(require("digraphs"))
+
+require("marks")
