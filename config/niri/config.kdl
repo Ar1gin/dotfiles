@@ -89,7 +89,6 @@ overview {
     }
 }
 
-spawn-at-startup "ghostty" "--launched-from=systemd"
 spawn-at-startup "qs"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "xwayland-satellite"
@@ -98,7 +97,7 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H_%M_%S.png"
 
 animations {
-    slowdown 0.25
+    slowdown 0
 }
 
 // Floats

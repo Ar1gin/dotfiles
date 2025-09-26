@@ -40,7 +40,9 @@ M.resolve = function(char)
 		if stopper then
 			M.backlog = ""
 			M.current_script = M.script
-			return stopper[M.upper and 2 or 1] .. M.resolve(char)
+			local upper = M.upper
+			M.upper = false
+			return stopper[upper and 2 or 1] .. M.resolve(char)
 		else
 			M.current_script = M.script
 			M.upper = false

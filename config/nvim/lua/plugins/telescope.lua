@@ -105,6 +105,10 @@ return {
 					diagnostics = {
 						disable_coordinates = true,
 					},
+					find_files = {
+						hidden = true,
+						file_ignore_patterns = { "^%.git" },
+					},
 				},
 			})
 			require("telescope").load_extension("fzf")

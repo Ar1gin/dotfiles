@@ -4,10 +4,6 @@ STOW_TARGET = $$HOME"/.config"
 STOW_SOURCE = "./config"
 
 generated = \
-	config/quickshell/.qmlls.ini \
-
-config/quickshell/.qmlls.ini:
-	touch config/quickshell/.qmlls.ini
 
 clear: unstow
 	rm $(generated)
