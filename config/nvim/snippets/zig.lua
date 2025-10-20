@@ -16,9 +16,12 @@ return {
 	s("panic", { t("@panic("), i(1), t(")"), i(0) }),
 	s("ffi", { t("@floatFromInt("), i(1), t(")"), i(0) }),
 	s("iff", { t("@intFromFloat("), i(1), t(")"), i(0) }),
+	s("this", { t("@This()"), i(0) }),
 	-- Syntax pasta
 	s({ trig = "pr", wordTrig = false }, { i(1), t(" => "), n(2, "|"), i(2), n(2, "| "), t("{"), i(3), t("},"), i(0) }),
 	s({ trig = "prb", wordTrig = false }, { i(1), t(" => "), n(2, "|"), i(2), n(2, "| "), t({ "{", "\t" }), i(3), t({ "", "}," }), i(0) }),
 	s("im", { t("const "), i(1), t(" = @import(\""), i(2), t("\");"), i(0), }),
 	s("fn", { t("fn "), i(1), t("("), i(2), t(") "), i(3), t({ " {", "\t" }), i(0), t({ "", "}" }) }),
+	s("str", { t({ "struct {", "\t" }), i(1), t({ "", "}" }), i(0) }),
+	s("union", { t({ "union(" }), i(1), t({ ") {", "\t" }), i(2), t({ "", "}" }), i(0) }),
 }

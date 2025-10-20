@@ -112,6 +112,10 @@ M.upadte_mark = function()
 end
 
 M.reset = function()
+	if M.current_script.stopper then
+		vim.api.nvim_put({ M.current_script.stopper[M.upper and 2 or 1] }, "c", false, true)
+		print(M.current_script.stopper)
+	end
 	if M.temporary then
 		M.script = M.default
 		M.temporary = false
