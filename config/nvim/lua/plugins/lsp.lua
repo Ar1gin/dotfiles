@@ -26,37 +26,35 @@ return {
 		keys = {
 			{ "<leader>w", "<cmd>Format<cr>",               desc = "Format" },
 			{ "<leader>W", "<cmd>Format<cr><cmd>write<cr>", desc = "Format & Write" },
+			{ "<leader>lh", desc = "Toggle inlay hints for buffer" },
+			{ "<leader>lH", desc = "Toggle inlay hints for all buffers" },
 		},
 		config = function()
+			vim.api.nvim_create_user_command("Format", function(_) vim.lsp.buf.format() end, {desc = "Format current buffer with LSP" })
+			vim.keymap.set("n", "<leader>lh", function()
+				local bufnr = vim.api.nvim_get_current_buf()
+				vim.lsp.inlay_hint.enable(
+					not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr}),
+					{ bufnr = bufnr }
+				)
+			end)
+			vim.keymap.set("n", "<leader>lH", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = { "lua_ls" }
 			})
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- TODO: Gotta make this into an quick toggle
-
-			-- vim.api.nvim_create_autocmd("LspAttach", {
-			-- 	callback = function(args)
-			-- 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-			--
-			-- 		if client and client.server_capabilities.inlayHintProvider then
-			-- 			vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-			-- 		end
-			-- 	end
-			-- })
-			require("lspconfig").lua_ls.setup({
-				on_init = function(client)
-					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
 						runtime = { version = "LuaJIT" },
 						workspace = {
 							checkThirdParty = false,
 							library = { vim.env.VIMRUNTIME },
 						},
-					})
-				end,
-				settings = { Lua = {} },
-				capabilities = capabilities,
+					},
+				},
 			})
 			local lsp_servers = {
 				"rust_analyzer",
@@ -69,21 +67,11 @@ return {
 				"gopls",
 				"texlab",
 				"qmlls",
+				"lua_ls",
 			}
-			local lsp_config = require("lspconfig")
 			for _, lsp_server in ipairs(lsp_servers) do
-				lsp_config[lsp_server].setup({
-					capabilities = capabilities,
-				})
+				vim.lsp.enable(lsp_server, true)
 			end
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-				callback = function(ev)
-					vim.api.nvim_buf_create_user_command(ev.buf, "Format", function(_)
-						vim.lsp.buf.format()
-					end, { desc = "Format current buffer with LSP" })
-				end
-			})
 		end,
 	},
 	{

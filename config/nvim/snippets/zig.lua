@@ -24,4 +24,7 @@ return {
 	s("fn", { t("fn "), i(1), t("("), i(2), t(") "), i(3), t({ " {", "\t" }), i(0), t({ "", "}" }) }),
 	s("str", { t({ "struct {", "\t" }), i(1), t({ "", "}" }), i(0) }),
 	s("union", { t({ "union(" }), i(1), t({ ") {", "\t" }), i(2), t({ "", "}" }), i(0) }),
+	s("pself", { t({ "self: *Self" }), i(0) }),
+	s("cself", { t({ "self: Self" }), i(0) }),
+	s("dself", { t({ "const " }), i(1, "Self"), t({ " = @This();" }), i(0) }),
 }
