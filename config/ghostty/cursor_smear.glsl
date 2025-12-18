@@ -25,6 +25,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
     vec2 invres = 1.0 / iResolution.xy;
     fragColor = texture(iChannel0, fragCoord * invres);
+    if(fragCoord.x < iCurrentCursor.x && fragCoord.x < iPreviousCursor.x) return;
+    if(fragCoord.y < iCurrentCursor.y && fragCoord.y < iPreviousCursor.y) return;
+    if(fragCoord.x > iCurrentCursor.x + iCurrentCursor.z && fragCoord.x > iPreviousCursor.x + iPreviousCursor.z) return;
+    if(fragCoord.y > iCurrentCursor.y + iCurrentCursor.w && fragCoord.y > iPreviousCursor.y + iPreviousCursor.w) return;
 
     vec2 diff = iCurrentCursor.xy - iPreviousCursor.xy;
     vec2 norm = diff / sqrt(dot(diff, diff));

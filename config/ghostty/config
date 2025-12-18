@@ -1,6 +1,7 @@
 font-family = "JetBrainsMono Nerd Font"
 font-size = 14
 adjust-cell-height = -16.66666667%
+adjust-cell-width = -5%
 adjust-cursor-height = -16.66666667%
 
 font-style = false
@@ -32,7 +33,7 @@ palette = 14=#8abeb7
 palette = 15=#c5c8c6
 
 background-opacity = 0.9375
-custom-shader = "cursor_smear.glsl"
+# custom-shader = "cursor_smear.glsl"
 
 resize-overlay = never
 focus-follows-mouse = true
