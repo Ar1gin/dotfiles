@@ -74,7 +74,7 @@ M.setup = function(opts)
 		group = group,
 		callback = function(_)
 			vim.v.char = M.resolve(vim.v.char)
-			M.upadte_mark()
+			M.update_mark()
 		end
 	})
 	vim.api.nvim_create_autocmd({ "InsertLeavePre" }, {
@@ -91,7 +91,7 @@ M.disable = function()
 	M.group = nil
 end
 
-M.upadte_mark = function()
+M.update_mark = function()
 	if M.mark_id ~= nil then
 		vim.api.nvim_buf_del_extmark(0, M.mark_namespace, M.mark_id)
 		M.mark_id = nil
@@ -114,7 +114,6 @@ end
 M.reset = function()
 	if M.current_script.stopper then
 		vim.api.nvim_put({ M.current_script.stopper[M.upper and 2 or 1] }, "c", false, true)
-		print(M.current_script.stopper)
 	end
 	if M.temporary then
 		M.script = M.default
@@ -123,7 +122,7 @@ M.reset = function()
 	M.current_script = M.script
 	M.backlog = ""
 	M.upper = false
-	M.upadte_mark()
+	M.update_mark()
 end
 
 M.set_script = function(script, temporary)
