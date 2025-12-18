@@ -4,10 +4,20 @@ local lualine_pad = {
 	padding = 0,
 	color = "Normal",
 	fmt = function(input, context)
+		-- Lualine does not provide `tabnr` sometimes for unknown reason
+		local tabnr = context.tabnr or 0
+		if tabnr == 0 then
+			return ""
+		end
 		local winnr = vim.fn.tabpagewinnr(context.tabnr)
+
+		if winnr == 0 then
+			return ""
+		end
 		return string.rep("⠀", require("winpad").get_pad_size(winnr)) .. input
 	end
 }
+
 return {
 	{
 		"letieu/harpoon-lualine",
