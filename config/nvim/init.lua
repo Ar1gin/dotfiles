@@ -82,6 +82,10 @@ vim.keymap.set("v", "s", "<Nop>")
 
 vim.keymap.set("i", "<C-f>", "<C-n>")
 
+if vim.g.neovide then
+	require("neovide")
+end
+
 require("lazy").setup("plugins")
 
 vim.fn.digraph_setlist(require("digraphs"))

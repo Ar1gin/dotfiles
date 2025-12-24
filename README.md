@@ -9,6 +9,7 @@
 - Foot term
 - Fuzzel
 - Ghostty
+- Neovide
 - Neovim
 - Niri
 - Quickshell
@@ -54,7 +55,7 @@
 - [Ghostty](https://ghostty.org/) as Terminal Emulator
 
 ## Installation
-Dotfiles are managed by `stow` via `make`. (All files/directores in `config/` are symlinked to `~/.config/`)
+Dotfiles are managed by `stow` via `make`. (All files/directories in `config/` are symlinked to `~/.config/`)
 
 Apply dotfiles
 ```sh

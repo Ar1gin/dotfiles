@@ -4,10 +4,7 @@ return {
 		lazy = false,
 		priority = 1024,
 		config = function()
-			local transparent = true
-			if vim.g.neovide then
-				transparent = false
-			end
+			local transparent = false
 			local color_overrides = {}
 			if transparent then
 				color_overrides = { theme = { all = { ui = { bg_gutter = "NONE" } } } }

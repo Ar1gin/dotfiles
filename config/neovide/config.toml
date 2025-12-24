@@ -1,0 +1,21 @@
+[font]
+normal = ["JetBrainsMono Nerd Font"]
+size = 14
+hinting = "full"
+edging = "antialias"
+
+[font.features]
+"JetBrainsMono Nerd Font" = [ "-calt", "+cv18", "+cv19", "+cv14" ]
+
+[[font.bold]]
+family = "JetBrainsMono Nerd Font"
+style = "Normal"
+
+[[font.italic]]
+family = "JetBrainsMono Nerd Font"
+style = "Normal"
+
+[box-drawing]
+mode = "native"
+[box-drawing.sizes]
+default = [1, 3]
