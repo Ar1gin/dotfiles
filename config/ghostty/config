@@ -1,8 +1,8 @@
 font-family = "JetBrainsMono Nerd Font"
 font-size = 14
-adjust-cell-height = -16.66666667%
+adjust-cell-height = -8.33333333%
 adjust-cell-width = -5%
-adjust-cursor-height = -16.66666667%
+adjust-cursor-height = -8.33333333%
 
 font-style = false
 font-style-bold = false
