@@ -28,4 +28,9 @@ return {
 			inline_pad = 1,
 		},
 	},
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		opts = {},
+	},
 }
