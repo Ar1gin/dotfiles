@@ -1,13 +1,59 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>lt", "<cmd>:TSToggle<cr>", desc = "Toggle Treesitter for current buffer" },
+		},
 		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "lua", "rust" },
-				highlight = { enable = true },
+			require("nvim-treesitter").install({
+				"lua",
+			})
+			local ts_or_fallback = function(fallback)
+				if vim.treesitter.get_parser(nil, nil, { error = false }) then
+					if vim.b.ts_highlight then
+						vim.treesitter.stop()
+					else
+						vim.treesitter.start()
+					end
+
+					if vim.b.syntax then
+						vim.b.syntax = false
+						vim.cmd("syntax off")
+					end
+					return true
+				else
+					if vim.b.syntax then
+						vim.b.syntax = false
+						vim.cmd("syntax off")
+					else
+						if fallback then
+							vim.b.syntax = true
+							vim.cmd("syntax on")
+							vim.cmd("syntax match Number /\\d\\+/")
+							vim.cmd("syntax match @punctuation.bracket /(\\|)/")
+							vim.cmd("syntax match @punctuation.delimiter /\\./")
+							vim.cmd("syntax match Boolean /True\\|true\\|False\\|false/")
+							vim.cmd("syntax match Operator /=\\|+\\|#/")
+							vim.cmd("syntax match String /\"\\|`\\|'/")
+						end
+					end
+					return false
+				end
+			end
+
+			vim.api.nvim_create_user_command("TSToggle", function(_)
+				if not ts_or_fallback(true) then
+					vim.api.nvim_echo({ { "Could not start TS server for current buffer", nil } }, true, {})
+				end
+			end, { desc = "Toggle Treesitter for current buffer" })
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(ev)
+					ts_or_fallback(false)
+				end,
 			})
 		end,
-		build = ":TSUpdate"
+		build = ":TSUpdate",
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -24,21 +70,23 @@ return {
 		},
 		lazy = false,
 		keys = {
-			{ "<leader>w", "<cmd>Format<cr>",               desc = "Format" },
-			{ "<leader>W", "<cmd>Format<cr><cmd>write<cr>", desc = "Format & Write" },
+			{ "<leader>s",  "<cmd>Format<cr>",                          desc = "Format" },
+			{ "<leader>S",  "<cmd>Format<cr><cmd>write<cr>",            desc = "Format & Write" },
 			{ "<leader>lh", desc = "Toggle inlay hints for buffer" },
 			{ "<leader>lH", desc = "Toggle inlay hints for all buffers" },
 		},
 		config = function()
-			vim.api.nvim_create_user_command("Format", function(_) vim.lsp.buf.format() end, {desc = "Format current buffer with LSP" })
+			vim.api.nvim_create_user_command("Format", function(_) vim.lsp.buf.format() end,
+				{ desc = "Format current buffer with LSP" })
 			vim.keymap.set("n", "<leader>lh", function()
 				local bufnr = vim.api.nvim_get_current_buf()
 				vim.lsp.inlay_hint.enable(
-					not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr}),
+					not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
 					{ bufnr = bufnr }
 				)
 			end)
-			vim.keymap.set("n", "<leader>lH", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+			vim.keymap.set("n", "<leader>lH",
+				function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({

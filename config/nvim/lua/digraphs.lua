@@ -1,4 +1,4 @@
-return {
+vim.fn.digraph_setlist({
 	{ "ps", "+" },
 	{ "ms", "-" },
 	{ "eq", "=" },
@@ -29,4 +29,4 @@ return {
 	{ "rs", "]" },
 	{ "la", "<" },
 	{ "ra", ">" },
-}
+})

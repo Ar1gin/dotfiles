@@ -20,28 +20,38 @@ local lualine_pad = {
 
 return {
 	{
-		"letieu/harpoon-lualine",
-		dependencies = {
-			{
-				"ThePrimeagen/harpoon",
-				branch = "harpoon2",
-			}
-		},
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"winpad",
-			"letieu/harpoon-lualine",
 		},
 		config = true,
 		opts = {
 			options = {
 				theme = "auto",
 				refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-				section_separators = { left = "▌", right = "▐" },
+				-- section_separators = { left = "▌", right = "▐" },
+				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
+				always_show_tabline = false,
+			},
+			tabline = {
+				lualine_a = {
+					{
+						"tabs",
+						mode = 1,
+						path = 1,
+						tab_max_length = 16,
+						fmt = function(name, context)
+							return context.tabnr .. ": " .. name
+						end
+					},
+				},
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
 			},
 			sections = {
 				lualine_a = {
@@ -54,16 +64,9 @@ return {
 				lualine_b = { "filename", "diff" },
 				lualine_c = {},
 				lualine_x = {
-					{
-						"harpoon2",
-						icon = "󰀱",
-						indicators = { "1", "2", "3", "4", "5" },
-						active_indicators = { "1", "2", "3", "4", "5" },
-						color = { fg = "#a0a0c0" },
-						color_active = { fg = "#fc6346" },
-					},
+					"diagnostics",
 					-- It's him! The legendary cat2!
-					{ function() return "🐈" end }, "diagnostics"
+					{ function() return "🐈" end },
 				},
 				lualine_y = { "branch" },
 				lualine_z = {},
