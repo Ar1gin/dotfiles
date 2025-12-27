@@ -16,6 +16,11 @@ vim.keymap.set("n", "<leader>w<Right>", "<cmd>rightb vnew<cr>")
 vim.keymap.set("n", "<leader>wd", "<cmd>quit<cr>")
 vim.keymap.set("n", "<leader>w", "<C-w>")
 
+vim.keymap.set("n", "<C-Left>", "<C-w><Left>", { noremap = true })
+vim.keymap.set("n", "<C-Down>", "<C-w><Down>", { noremap = true })
+vim.keymap.set("n", "<C-Up>", "<C-w><Up>", { noremap = true })
+vim.keymap.set("n", "<C-Right>", "<C-w><Right>", { noremap = true })
+
 -- Unify PaguUp/PageDown, H/L and ^u/^d
 vim.keymap.set({ "n", "v" }, "<PageUp>", "<C-u>")
 vim.keymap.set({ "n", "v" }, "H", "<C-u>")
@@ -29,21 +34,13 @@ vim.keymap.set("v", "s", "<Nop>")
 vim.keymap.set("i", "<C-f>", "<C-n>")
 
 -- Tab actions
-vim.keymap.set("n", "<Tab>", "<cmd>+tabn<cr>")
-vim.keymap.set("n", "<S-Tab>", "<cmd>-tabn<cr>")
-
-vim.keymap.set("n", "<C-Left>", "<C-w><Left>", { noremap = true })
-vim.keymap.set("n", "<C-Down>", "<C-w><Down>", { noremap = true })
-vim.keymap.set("n", "<C-Up>", "<C-w><Up>", { noremap = true })
-vim.keymap.set("n", "<C-Right>", "<C-w><Right>", { noremap = true })
-
-vim.keymap.set("n", "<C-S-Left>", "<cmd>-tabmove<cr>")
-vim.keymap.set("n", "<C-S-Right>", "<cmd>+tabmove<cr>")
-
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "<leader>tN", "<cmd>-tabnew<cr>")
 vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "<leader>tD", "<cmd>tabonly<cr>")
+
+vim.keymap.set("n", "<C-S-Left>", "<cmd>-tabmove<cr>")
+vim.keymap.set("n", "<C-S-Right>", "<cmd>+tabmove<cr>")
 
 vim.keymap.set("n", "<C-Right>", "<C-w><Right>", { noremap = true })
 local keys = "12345"
