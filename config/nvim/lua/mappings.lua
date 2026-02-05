@@ -1,3 +1,8 @@
+vim.keymap.set("n", "<Down>", "g<Down>", { noremap = true })
+vim.keymap.set("n", "<Up>", "g<Up>", { noremap = true })
+vim.keymap.set("n", "j", "gj", { noremap = true })
+vim.keymap.set("n", "k", "gk", { noremap = true })
+
 -- Buffer actions
 vim.keymap.set("n", "<leader>br", function()
 	vim.ui.input({ prompt = prompt }, function(input)
@@ -8,6 +13,8 @@ vim.keymap.set("n", "<leader>br", function()
 	end)
 end)
 vim.keymap.set("n", "<leader>bt", "<cmd>terminal<cr>")
+vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>")
+vim.keymap.set("n", "<leader>bD", "<cmd>%bdelete<cr>")
 -- Window actions
 vim.keymap.set("n", "<leader>w<Left>", "<cmd>lefta vnew<cr>")
 vim.keymap.set("n", "<leader>w<Down>", "<cmd>rightb new<cr>")

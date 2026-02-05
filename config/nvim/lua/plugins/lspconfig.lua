@@ -14,8 +14,8 @@ return {
 		},
 		lazy = false,
 		keys = {
-			{ "<leader>s",  "<cmd>Format<cr>",                          desc = "Format" },
-			{ "<leader>S",  "<cmd>Format<cr><cmd>write<cr>",            desc = "Format & Write" },
+			{ "<leader>m",  "<cmd>Format<cr>",                          desc = "Format" },
+			{ "<leader>M",  "<cmd>Format<cr><cmd>write<cr>",            desc = "Format & Write" },
 			{ "<leader>lh", desc = "Toggle inlay hints for buffer" },
 			{ "<leader>lH", desc = "Toggle inlay hints for all buffers" },
 		},
@@ -30,7 +30,10 @@ return {
 				)
 			end)
 			vim.keymap.set("n", "<leader>lH",
-				function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+				function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+				end
+			)
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({

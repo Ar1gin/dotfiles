@@ -42,9 +42,14 @@ return {
 						mode = 1,
 						path = 1,
 						tab_max_length = 16,
+						max_length = vim.o.columns,
 						fmt = function(name, context)
 							return context.tabnr .. ": " .. name
-						end
+						end,
+						tabs_color = {
+							active = "TabActive",
+							inactive = "TabInactive",
+						},
 					},
 				},
 				lualine_b = {},

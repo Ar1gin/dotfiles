@@ -2,7 +2,7 @@ return {
 	"nmac427/guess-indent.nvim",
 	lazy = false,
 	keys = {
-		{ "<leader>gi", "<cmd>GuessIndent<cr>", "Guess Indentation" },
+		{ "<leader>ig", "<cmd>GuessIndent<cr>", desc = "Guess Indentation" },
 	},
 	opts = {
 		auto_cmd = true,

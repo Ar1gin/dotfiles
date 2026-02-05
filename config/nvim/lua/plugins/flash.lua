@@ -1,8 +1,8 @@
 return {
 	"folke/flash.nvim",
 	keys = {
-		{ "<cr>",                   mode = { "n", "x", "o" }, desc = "Search in visible text" },
-		{ mode = { "x", "o" },      "z",                      desc = "Treesitter incremental search" },
+		{ mode = { "n", "x", "o" }, "<cr>", desc = "Search in visible text" },
+		{ mode = { "x", "o" },      "z",    desc = "Treesitter incremental search" },
 		{ mode = { "n", "x", "o" }, "f" },
 		{ mode = { "n", "x", "o" }, "F" },
 		{ mode = { "n", "x", "o" }, "t" },

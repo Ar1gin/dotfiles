@@ -1,18 +1,16 @@
-local M = {}
-
-M.cfg = {
+local M = {
 	skip_filetypes = {},
-	enabled = true,
+	enabled = false,
 }
 
 M.setup = function(ctx)
-	if ctx == nil then
-		return
-	end
+	ctx = ctx or {}
 
-	M.cfg.skip_filetypes = ctx.skip_filetypes or {}
-	if type(ctx.enabled) == "boolean" then
-		M.cfg.enabled = ctx.enabled
+	M.skip_filetypes = ctx.skip_filetypes or {}
+	if type(ctx.enabled) == "boolean" and ctx.enabled then
+		M.enable()
+	else
+		M.enabled = false
 	end
 end
 
@@ -30,11 +28,8 @@ local function must_skip_file(skip_filetypes, current_type)
 	return false
 end
 
-local function stay_centered(ctx)
-	if not ctx.cfg.enabled then
-		return
-	end
-	if must_skip_file(ctx.cfg.skip_filetypes, vim.bo.filetype) then
+local function stay_centered()
+	if must_skip_file(M.skip_filetypes, vim.bo.filetype) then
 		return
 	end
 
@@ -49,40 +44,48 @@ local function stay_centered(ctx)
 	end
 end
 
-local add_group = vim.api.nvim_create_augroup
-local group = add_group("StayCentered", { clear = true })
-
-local add_command = vim.api.nvim_create_autocmd
-add_command("CursorMovedI", {
-	group = group,
-	callback = function()
-		stay_centered({ mode = "insert", cfg = M.cfg })
-	end,
-})
-add_command("CursorMoved", {
-	group = group,
-	callback = function()
-		stay_centered({ mode = "other", cfg = M.cfg })
-	end,
-})
-add_command("BufEnter", {
-	group = group,
-	callback = function()
-		stay_centered({ mode = "other", cfg = M.cfg })
-	end,
-})
 
 M.enable = function()
-	M.cfg.enabled = true
-	stay_centered({ mode = "other", cfg = M.cfg })
+	if M.enabled then
+		return
+	end
+
+	M.enabled = true
+	M.group = vim.api.nvim_create_augroup("StayCentered", { clear = true })
+
+	local add_command = vim.api.nvim_create_autocmd
+	add_command("CursorMovedI", {
+		group = M.group,
+		callback = function()
+			stay_centered({ mode = "insert" })
+		end,
+	})
+	add_command("CursorMoved", {
+		group = M.group,
+		callback = function()
+			stay_centered({ mode = "other" })
+		end,
+	})
+	add_command("BufEnter", {
+		group = M.group,
+		callback = function()
+			stay_centered({ mode = "other" })
+		end,
+	})
+	stay_centered({ mode = "other" })
 end
 
 M.disable = function()
-	M.cfg.enabled = false
+	if not M.enabled then
+		return
+	end
+
+	M.enabled = false
+	vim.api.nvim_del_augroup_by_id(M.group)
 end
 
 M.toggle = function()
-	if M.cfg.enabled then
+	if M.enabled then
 		M.disable()
 	else
 		M.enable()

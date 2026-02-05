@@ -69,6 +69,9 @@ return {
 					["RenderMarkdownH6Bg"] = { fg = "#7FB4CA", bg = "#2A2A37" },
 					["RenderMarkdownCode"] = { bg = "#24252D" },
 					["RenderMarkdownCodeInline"] = { bg = "#24252D" },
+					-- Lualine
+					["TabActive"] = { fg = colors.theme.ui.fg, bg = colors.theme.ui.bg_p2 },
+					["TabInactive"] = { fg = colors.theme.ui.fg_dim, bg = colors.theme.ui.bg_m1 },
 				}
 			end,
 		})

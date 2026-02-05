@@ -29,9 +29,14 @@ vim.opt.fillchars = { eob = " " }
 vim.opt.virtualedit = "all"
 vim.opt.timeout = false
 vim.opt.showmode = false
+vim.opt.scrolloff = 5
 vim.opt.pumheight = 7
+vim.opt.completeopt = "menu,menuone,popup,fuzzy"
+vim.opt.complete = "."
+vim.opt.colorcolumn = "101"
 vim.diagnostic.config({ virtual_text = false, underline = false, signs = false })
 
 -- FTPlugin, begone
 -- vim.cmd("autocmd BufReadPre,BufNewFile * let b:did_ftplugin = 1")
 vim.cmd("filetype plugin off")
+vim.cmd("filetype indent off")

@@ -4,6 +4,7 @@ return {
 	s("pt", t("?*")),
 	s("dis", t("_ = ")),
 	s("disp", t("_ = &")),
+	s("std", t("const std = @import(\"std\");")),
 	-- Builtin functions
 	s("as", { t("@as("), i(1, "type"), t(", "), i(2, "{}"), t(")"), i(0) }),
 	s("vec", { t("@Vector("), i(1, "count"), t(", "), i(2, "type"), t(")"), i(0) }),
@@ -21,7 +22,7 @@ return {
 	s({ trig = "pr", wordTrig = false }, { i(1), t(" => "), n(2, "|"), i(2), n(2, "| "), t("{"), i(3), t("},"), i(0) }),
 	s({ trig = "prb", wordTrig = false }, { i(1), t(" => "), n(2, "|"), i(2), n(2, "| "), t({ "{", "\t" }), i(3), t({ "", "}," }), i(0) }),
 	s("im", { t("const "), i(1), t(" = @import(\""), i(2), t("\");"), i(0), }),
-	s("fn", { t("fn "), i(1), t("("), i(2), t(") "), i(3), t({ " {", "\t" }), i(0), t({ "", "}" }) }),
+	s("fn", { t("fn "), i(1), t("("), i(2), t(") "), i(3), t({ " {", "\t" }), i(4), t({ "", "}" }), i(0) }),
 	s("str", { t({ "struct {", "\t" }), i(1), t({ "", "}" }), i(0) }),
 	s("union", { t({ "union(" }), i(1), t({ ") {", "\t" }), i(2), t({ "", "}" }), i(0) }),
 	s("pself", { t({ "self: *Self" }), i(0) }),

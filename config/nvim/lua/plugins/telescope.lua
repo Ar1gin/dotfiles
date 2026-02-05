@@ -7,7 +7,7 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 		},
 		keys = {
-			{ "<leader>t",  desc = "Resume Search" },
+			{ "<leader>u",  desc = "Resume Search" },
 			{ "<leader>f",  desc = "Find All Files" },
 			{ "<leader>F",  desc = "Find Git Files" },
 			{ "<leader>/",  desc = "FZF In File" },
@@ -126,7 +126,7 @@ return {
 			})
 			require("telescope").load_extension("fzf")
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>t", builtin.resume, {})
+			vim.keymap.set("n", "<leader>u", builtin.resume, {})
 			vim.keymap.set("n", "<leader>f", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>F", builtin.git_files, {})
 			vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, {})
