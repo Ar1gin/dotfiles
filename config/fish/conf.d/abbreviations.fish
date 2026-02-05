@@ -24,13 +24,13 @@ abbr -a ges git remote show -n
 abbr -a gf git fetch
 abbr -a gg git push
 abbr -a g git
-abbr -a go git restore
-abbr -a goo git restore -S
 abbr -a gp git pull
 abbr -a gr git reset
 abbr -a gri git rebase -i
 abbr -a gs git status
 abbr -a gss git status -s
+abbr -a gt git restore
+abbr -a gts git restore -S
 abbr -a gw git switch
 
 # Zig
