@@ -43,11 +43,27 @@ return {
 		for kind, link in pairs(kinds) do
 			vim.api.nvim_set_hl(0, "CmpItemKind" .. kind, { link = link[2] })
 		end
-		local omnicomplete = function(fallback)
+		local confirm_or_complete = function(fallback)
 			if cmp.visible() then
 				cmp.mapping.confirm({ select = true })(fallback)
 			else
 				cmp.mapping.complete()(fallback)
+			end
+		end
+		local next_or_complete = function(fallback)
+			if cmp.visible() then
+				cmp.mapping.select_next_item()(fallback)
+			else
+				cmp.mapping.complete()(fallback)
+				cmp.mapping.select_next_item()(fallback)
+			end
+		end
+		local previous_or_complete = function(fallback)
+			if cmp.visible() then
+				cmp.mapping.select_prev_item()(fallback)
+			else
+				cmp.mapping.complete()(fallback)
+				cmp.mapping.select_next_item()(fallback)
 			end
 		end
 		local formatting = {
@@ -78,16 +94,16 @@ return {
 		}
 		local mapping = ({
 			-- QWERTY mappings
-			["<C-h>"] = { i = omnicomplete, c = omnicomplete },
-			["<C-j>"] = { i = cmp.mapping.select_next_item(), c = cmp.mapping.select_next_item() },
-			["<C-k>"] = { i = cmp.mapping.select_prev_item(), c = cmp.mapping.select_prev_item() },
+			["<C-h>"] = { i = confirm_or_complete, c = confirm_or_complete },
+			["<C-j>"] = { i = next_or_complete, c = next_or_complete },
+			["<C-k>"] = { i = previous_or_complete, c = previous_or_complete },
 			["<C-l>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
 			["<A-j>"] = { i = cmp.mapping.scroll_docs(6), c = cmp.mapping.scroll_docs(6) },
 			["<A-k>"] = { i = cmp.mapping.scroll_docs(-6), c = cmp.mapping.scroll_docs(-6) },
 			-- Colemak mappings
-			["<C-n>"] = { i = omnicomplete, c = omnicomplete },
-			["<C-e>"] = { i = cmp.mapping.select_next_item(), c = cmp.mapping.select_next_item() },
-			["<C-i>"] = { i = cmp.mapping.select_prev_item(), c = cmp.mapping.select_prev_item() },
+			["<C-n>"] = { i = confirm_or_complete, c = confirm_or_complete },
+			["<C-e>"] = { i = next_or_complete, c = next_or_complete },
+			["<C-i>"] = { i = previous_or_complete, c = previous_or_complete },
 			["<C-o>"] = { i = cmp.mapping.abort(), c = cmp.mapping.abort() },
 			["<A-e>"] = { i = cmp.mapping.scroll_docs(6), c = cmp.mapping.scroll_docs(6) },
 			["<A-i>"] = { i = cmp.mapping.scroll_docs(-6), c = cmp.mapping.scroll_docs(-6) },
@@ -102,10 +118,9 @@ return {
 			},
 		}
 		cmp.setup({
-			-- completion = {
-			-- 	autocomplete = true,
-			-- 	completeopt = "menu,menuone",
-			-- },
+			completion = {
+				autocomplete = false,
+			},
 			formatting = formatting,
 			snippet = {
 				expand = function(args)
@@ -117,7 +132,7 @@ return {
 				-- All the useful suggestions are at the bottom
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },
-				{ name = "buffer" },
+				-- { name = "buffer" },
 				{ name = "render-markdown" },
 				{ name = "emoji" },
 				{ name = "path" },
