@@ -89,15 +89,30 @@ overview {
     }
 }
 
+gestures {
+    hot-corners {
+        off
+    }
+}
+
 spawn-at-startup "qs"
 spawn-at-startup "swww-daemon"
-spawn-at-startup "xwayland-satellite"
 prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H_%M_%S.png"
 
 animations {
+    // slowdown 0.25
     slowdown 0
+    overview-open-close {
+        spring damping-ratio=0.875 stiffness=100 epsilon=0.001
+    }
+    workspace-switch {
+        spring damping-ratio=1.125 stiffness=1000 epsilon=0.001
+    }
+    horizontal-view-movement {
+        spring damping-ratio=1.125 stiffness=1000 epsilon=0.001
+    }
 }
 
 // Floats
@@ -129,15 +144,13 @@ window-rule {
 }
 
 layer-rule {
-    match namespace=r#"^quickshell$"#
-
-    place-within-backdrop true
-}
-
-layer-rule {
     match namespace="^notifications$"
 
     block-out-from "screen-capture"
+}
+
+hotkey-overlay {
+    skip-at-startup
 }
 
 binds {
