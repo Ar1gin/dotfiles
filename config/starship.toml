@@ -1,5 +1,5 @@
 format = '''
-[\[$username@$hostname\]:\[$directory$git_branch\]$git_status$git_state
+[\[$username@$hostname\]:\[$directory$git_branch\]$nix_shell$git_status$git_state
 - $character ](fg:white)
 '''
 
@@ -23,6 +23,12 @@ truncation_symbol = "*/"
 read_only = "!"
 repo_root_style = "fg:bright-yellow"
 repo_root_format = '[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)'
+
+[nix_shell]
+impure_msg = "[$name](fg:yellow)"
+pure_msg = "[$name](fg:green)"
+unknown_msg = "[$name](fg:red)"
+format = '[:\[$state\]](fg:white)'
 
 [git_branch]
 ignore_branches = ["main"]
