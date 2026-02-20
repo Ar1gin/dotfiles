@@ -34,7 +34,12 @@ vim.opt.pumheight = 7
 vim.opt.completeopt = "menu,menuone,popup,fuzzy"
 vim.opt.complete = "."
 vim.opt.colorcolumn = "101"
-vim.diagnostic.config({ virtual_text = false, underline = false, signs = false })
+vim.diagnostic.config({
+	virtual_text = false,
+	underline = false,
+	signs = true,
+	update_in_insert = false,
+})
 
 -- FTPlugin, begone
 -- vim.cmd("autocmd BufReadPre,BufNewFile * let b:did_ftplugin = 1")

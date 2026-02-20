@@ -49,7 +49,6 @@ vim.keymap.set("n", "<leader>tD", "<cmd>tabonly<cr>")
 vim.keymap.set("n", "<C-S-Left>", "<cmd>-tabmove<cr>")
 vim.keymap.set("n", "<C-S-Right>", "<cmd>+tabmove<cr>")
 
-vim.keymap.set("n", "<C-Right>", "<C-w><Right>", { noremap = true })
 local keys = "12345"
 for i = 1, #keys do
 	local key = keys:sub(i, i)
