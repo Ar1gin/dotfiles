@@ -2,20 +2,18 @@ return {
 	"rebelot/kanagawa.nvim",
 	lazy = false,
 	priority = 1024,
+	build = ":KanagawaCompile",
 	config = function()
 		local transparent = false
-		local color_overrides = {}
-		if transparent then
-			color_overrides = { theme = { all = { ui = { bg_gutter = "NONE" } } } }
-		end
+
 		require("kanagawa").setup({
 			transparent = transparent,
-			compile = false,
+			compile = true,
 			undercurl = false,
 			commentStyle = { italic = false, bold = false },
 			keywordStyle = { italic = false, bold = false },
 			statementStyle = { italic = false, bold = false },
-			colors = color_overrides,
+			colors = { theme = { all = { ui = { bg_gutter = "NONE" } } } },
 			overrides = function(colors)
 				return {
 					["Boolean"] = { bold = false },
