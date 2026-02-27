@@ -40,7 +40,7 @@ vim.diagnostic.config({
 	signs = true,
 	update_in_insert = false,
 })
-
+vim.opt.spell = true
 -- FTPlugin, begone
 -- vim.cmd("autocmd BufReadPre,BufNewFile * let b:did_ftplugin = 1")
 vim.cmd("filetype plugin off")

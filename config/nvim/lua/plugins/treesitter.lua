@@ -1,6 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = "VeryLazy",
+	branch = "main",
 	keys = {
 		{ "<leader>lt", "<cmd>:TSToggle<cr>", desc = "Toggle Treesitter for current buffer" },
 	},
@@ -33,7 +34,7 @@ return {
 						vim.cmd("syntax match @punctuation.bracket /(\\|)/")
 						vim.cmd("syntax match @punctuation.delimiter /\\./")
 						vim.cmd("syntax match Boolean /True\\|true\\|False\\|false/")
-						vim.cmd("syntax match Operator /=\\|+\\|#/")
+						vim.cmd("syntax match Operator /=\\|+\\|#\\|%/")
 						vim.cmd("syntax match String /\"\\|`\\|'/")
 					end
 				end

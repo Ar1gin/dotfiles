@@ -10,26 +10,54 @@ freetype-load-flags = "force-autohint"
 keybind = "ctrl+alt+r=reload_config"
 
 foreground = #c5c8c6
-background = #1c1d27
-palette =  0=#282a2e
-palette =  1=#a54242
-palette =  2=#8c9440
-palette =  3=#de935f
-palette =  4=#5f819d
-palette =  5=#85678f
-palette =  6=#5e8d87
-palette =  7=#707880
-palette =  8=#373b41
-palette =  9=#ff5555
-palette = 10=#b5bd68
-palette = 11=#f0c674
-palette = 12=#81a2be
-palette = 13=#b294bb
-palette = 14=#8abeb7
-palette = 15=#c5c8c6
+background = #181616
+palette =  0=#202226
+palette =  1=#9d3a3a
+palette =  2=#848c38
+palette =  3=#d68b57
+palette =  4=#577995
+palette =  5=#7d5f87
+palette =  6=#56857f
+palette =  7=#687078
+palette =  8=#272b31
+palette =  9=#ef4545
+palette = 10=#a5ad58
+palette = 11=#e0b664
+palette = 12=#7192ae
+palette = 13=#a284ab
+palette = 14=#7aaea7
+palette = 15=#b5b8b6
+
+# Original, brighter colors
+# palette =  0=#282a2e
+# palette =  1=#a54242
+# palette =  2=#8c9440
+# palette =  3=#de935f
+# palette =  4=#5f819d
+# palette =  5=#85678f
+# palette =  6=#5e8d87
+# palette =  7=#707880
+# palette =  8=#373b41
+# palette =  9=#ff5555
+# palette = 10=#b5bd68
+# palette = 11=#f0c674
+# palette = 12=#81a2be
+# palette = 13=#b294bb
+# palette = 14=#8abeb7
+# palette = 15=#c5c8c6
 
 background-opacity = 0.9375
+background-opacity-cells = true
+
+background-image = "niko_scaled.png"
+background-image-position = bottom-right
+background-image-fit = none
+background-image-opacity = 0.125
+
 # custom-shader = "cursor_smear.glsl"
+
+window-padding-balance = true
+window-padding-color = extend
 
 resize-overlay = never
 focus-follows-mouse = true

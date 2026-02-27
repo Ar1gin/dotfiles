@@ -33,28 +33,29 @@ return {
 				}
 			end,
 		})
-		local termcolors = {
-			"#282A2E",
-			"#A54242",
-			"#8C9440",
-			"#DE935F",
-			"#5F819D",
-			"#85678F",
-			"#5E8D87",
-			"#707880",
-			"#373B41",
-			"#FF5555",
-			"#B5BD68",
-			"#F0C674",
-			"#81A2BE",
-			"#B294BB",
-			"#8ABEB7",
-			"#C5C8C6",
-		}
+
 		vim.cmd("colorscheme kanagawa-dragon")
+
+		local termcolors = {
+			"#202226",
+			"#9D3A3A",
+			"#848C38",
+			"#D68B57",
+			"#577995",
+			"#7D5F87",
+			"#56857F",
+			"#687078",
+			"#272B31",
+			"#EF4545",
+			"#A5AD58",
+			"#E0B664",
+			"#7192AE",
+			"#A284AB",
+			"#7AAEA7",
+			"#B5B8B6",
+		}
 		for i, color in ipairs(termcolors) do
 			vim.g["terminal_color_" .. i - 1] = color
 		end
-		vim.api.nvim_set_hl(0, "ExchangeRegion", { link = "CursorLine" })
 	end,
 }
