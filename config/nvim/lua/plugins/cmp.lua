@@ -117,6 +117,23 @@ return {
 				max_height = 16,
 			},
 		}
+		-- NOTE: Use default sorting, but remove 'locality' to improve performance on files with
+		-- very long lines. More info: [https://github.com/hrsh7th/nvim-cmp/issues/1841]
+		local sorting = {
+			priority_weight = 2,
+			comparators = {
+				cmp.config.compare.offset,
+				cmp.config.compare.exact,
+				-- compare.scopes, -- Removed in the default settings
+				cmp.config.compare.score,
+				cmp.config.compare.recently_used,
+				-- compare.locality, -- Removed due to above reason
+				cmp.config.compare.kind,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.length,
+				cmp.config.compare.order,
+			}
+		}
 		cmp.setup({
 			completion = {
 				autocomplete = false,
@@ -128,15 +145,14 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				-- FIXME: Suggestion sorting is bogus;
-				-- All the useful suggestions are at the bottom
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lsp_signature_help" },
-				-- { name = "buffer" },
+				-- { name = "buffer" }, -- Unnecessary with ^F and ^P
 				{ name = "render-markdown" },
 				{ name = "emoji" },
 				{ name = "path" },
 			}),
+			sorting = sorting,
 			mapping = mapping,
 			window = window,
 		})
@@ -144,6 +160,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "buffer" },
 			}),
+			sorting = sorting,
 			mapping = mapping,
 		})
 		cmp.setup.cmdline(":", {
@@ -154,6 +171,7 @@ return {
 					option = { ignore_cmds = { 'Man', '!' } }
 				},
 			}),
+			sorting = sorting,
 			mapping = mapping,
 		})
 	end,
