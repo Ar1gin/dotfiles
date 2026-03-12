@@ -1,73 +1,83 @@
 import QtQuick
 import QtQuick.Layouts
-import "components"
-import "config"
+import qs.config
 
 Item {
-    id: root
-
-    Repeater {
-        id: rep
-        model: [
-            [Ram.memUsage >= Constants.memAlertPercentage, "MEMORY ALERT: " + parseInt(Ram.memUsage * 100) + "%"],
-            [Ram.swapUsage >= Constants.memAlertPercentage, "SWAP ALERT: " + parseInt(Ram.swapUsage * 100) + "%"],
-            [!Net.online, "OFFLINE"],
-        ]
-        PatternRect {
-            required property var modelData
-            parent: visible ? alerts : root
+    id: alerts
+    RowLayout {
+        anchors.fill: parent
+        spacing: Constants.splitWidth
+        AlertBox {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            mainColor: Colors.indicatorAlertBorder
-            secondaryColor: Colors.indicatorAlert
-            borderWidth: Constants.borderHeight
-            patternSource: "../assets/pattern_alert.png"
-            visible: modelData[0]
-            PText {
-                anchors.fill: parent
-                font: Constants.mainFont
-                color: Colors.indicatorAlertText
-                text: modelData[1]
-            }
+            Layout.preferredWidth: 1
+            severity: alerts.top1Alert?.[1] ?? 0
+            text: alerts.top1Alert?.[0] ?? "ohh"
+            opacity: alerts.top1Alert != null
+        }
+        AlertBox {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredWidth: 1
+            severity: alerts.top2Alert?.[1] ?? 0
+            text: alerts.top2Alert?.[0] ?? "ohh"
+            opacity: alerts.top2Alert != null
+        }
+        AlertBox {
+            Layout.fillHeight: true
+            severity: alerts.leftAlertsSeverity
+            icon: false
+            text: "+" + alerts.leftAlerts.toString().padStart(2, "0")
+            opacity: alerts.leftAlerts > 0
         }
     }
 
-    RowLayout {
-        anchors.fill: parent
-        spacing: Constants.borderHeight
+    property var alertList: [
+        ["Offline", 2, !Net.online],
+        ["Battery Low", 2, Battery.alert],
+        ["Battery Critical", 3, !Battery.alert && Battery.critical],
+        ["Storage Low", 2, false],
+        ["Storage Critical", 3, false],
+    ];
+    property var top1Alert: null
+    property var top2Alert: null
+    property int leftAlertsSeverity: 0
+    property int leftAlerts: 0
 
-        StackLayout {
-            id: alerts
-            visible: children.length > 0
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-        }
-        Rectangle {
-            Layout.fillHeight: true
-            implicitWidth: height * 2
-            visible: alerts.children.length > 1
-            color: Colors.indicatorAlert
-            border.width: Constants.borderHeight
-            border.color: Colors.indicatorAlertBorder
-            PText {
-                anchors.fill: parent
-                font: Constants.mainFont
-                color: Colors.indicatorAlertText
-                text: "+" + (alerts.children.length - 1)
-            }
-        }
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            visible: alerts.children.length == 0
-            color: Colors.workspaceButtonInactive
-            border.width: Constants.borderHeight
-            border.color: Colors.workspaceButtonInactiveBorder
-            PText {
-                anchors.fill: parent
-                font: Constants.smallFont
-                color: Colors.foregroundDim
-                text: "~ No alerts ~"
+    onAlertListChanged: {
+        top1Alert = null;
+        top2Alert = null;
+        leftAlertsSeverity = 0;
+        leftAlerts = -2;
+        // Expensive, yes. Frequent? Nah.
+        for (var i = 0; i < alertList.length; i++) {
+            const currAlert = alertList[i];
+            if(!currAlert[2]) continue;
+            leftAlerts += 1;
+
+            if (top1Alert == null || top1Alert[1] < currAlert[1]) {
+                if(top2Alert == null || top2Alert[1] <= top1Alert[1]) {
+                    if(top2Alert != null && leftAlertsSeverity < top2Alert[1]) {
+                        leftAlertsSeverity = top2Alert[1]
+                    }
+                    top2Alert = top1Alert;
+                } else {
+                    if(top1Alert != null && leftAlertsSeverity < top1Alert[1]) {
+                        leftAlertsSeverity = top1Alert[1]
+                    }
+                }
+                top1Alert = currAlert;
+            } else {
+                if(top2Alert == null || top2Alert[1] <= currAlert[1]) {
+                    if(top2Alert != null && leftAlertsSeverity < top2Alert[1]) {
+                        leftAlertsSeverity = top2Alert[1]
+                    }
+                    top2Alert = currAlert;
+                } else {
+                    if(leftAlertsSeverity < currAlert[1]) {
+                        leftAlertsSeverity = currAlert[1]
+                    }
+                }
             }
         }
     }

@@ -1,40 +1,42 @@
-import Quickshell.Services.Pipewire
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
-import "config"
+import qs.config
 
 RowLayout {
-    spacing: Constants.borderHeight
-    PIndicator {
-        Layout.fillWidth: true
+    spacing: Constants.splitWidth
+    Indicator {
+        implicitWidth: 96
+        Layout.maximumWidth: 96
         Layout.fillHeight: true
-
-        mainColor: Colors.indicatorBattery
-        symbol: ""
-        percentage: 0.5
+        icon: "cpu"
+        value: Cpu.usage
+        color: Colors.cpuAccent
     }
-    PIndicator {
-        Layout.fillWidth: true
+    Indicator {
+        implicitWidth: 96
+        Layout.maximumWidth: 96
         Layout.fillHeight: true
-
-        mainColor: Colors.indicatorRam
-        symbol: "󰍛"
-        percentage: Ram.memUsage
+        icon: "memory"
+        value: Ram.memUsage
+        color: Colors.memAccent
     }
-    PAudio {
-        Layout.fillWidth: true
+    Indicator {
+        implicitWidth: 96
+        Layout.maximumWidth: 96
         Layout.fillHeight: true
-        node: Pipewire.defaultAudioSource
-        activeColor: Colors.indicatorMic
-        inactiveText: "OFF 󰍭"
-        activeText: "REC 󰍬"
+        icon: "drive-harddisk"
+        value: 0
+        color: Colors.driveAccent
     }
-    PAudio {
-        Layout.fillWidth: true
+    Indicator {
+        visible: Battery.hasBattery
+        implicitWidth: 96
+        Layout.maximumWidth: 96
         Layout.fillHeight: true
-        node: Pipewire.defaultAudioSink
-        activeColor: Colors.indicatorSpeaker
-        inactiveText: "OFF 󰝟"
-        activeText: "SPK 󰕾"
+        icon: "battery"
+        lit: Battery.alert
+        value: Battery.charge
+        color: Battery.charging ? Colors.batAccentCharging : Colors.batAccentLow
     }
 }

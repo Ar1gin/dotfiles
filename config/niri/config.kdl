@@ -11,17 +11,8 @@ workspace "4"
 
 input {
     touchpad {
-        // off
         tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
         natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
     }
 
     mouse {
@@ -31,25 +22,24 @@ input {
 
     trackpoint {
         natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // middle-emulation
     }
+
     focus-follows-mouse max-scroll-amount="0%"
     tablet;
 }
 
 layout {
-    gaps 0
+    gaps 2
     always-center-single-column
     center-focused-column "never"
+    background-color "#181616"
 
     preset-column-widths {
+        proportion 0.25
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
     }
     default-column-width { proportion 1.0; }
 
@@ -57,31 +47,26 @@ layout {
 
     border {
         width 2
-        active-gradient from="#957fb8" to="#7e9cd8" angle=135 relative-to="workspace-view"
-        inactive-color "#223249"
-        urgent-color "#9b0000"
+        active-color "#a6a69c"
+        inactive-color "#625e5a"
+        urgent-color "#625e5a"
     }
 
-    shadow {
-        on
-        softness 12
-        spread 4
-        color "#0007"
-        draw-behind-window true
-    }
+    shadow { off; }
 
     struts {
-        left -2
-        right -2
-        top -2
-        bottom -2
+        left 4
+        right 4
+        top 4
+        bottom 4
     }
 }
 
 overview {
-    zoom 0.5
-    backdrop-color "#262433"
+    zoom 0.25
+    backdrop-color "#181616"
     workspace-shadow {
+        off
         softness 16
         spread 8
         offset x=0 y=0
@@ -90,9 +75,7 @@ overview {
 }
 
 gestures {
-    hot-corners {
-        off
-    }
+    hot-corners { off; }
 }
 
 spawn-at-startup "qs"
@@ -101,24 +84,18 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H_%M_%S.png"
 
-animations {
-    // slowdown 0.25
-    slowdown 0
-    overview-open-close {
-        spring damping-ratio=0.875 stiffness=100 epsilon=0.001
-    }
-    workspace-switch {
-        spring damping-ratio=1.125 stiffness=1000 epsilon=0.001
-    }
-    horizontal-view-movement {
-        spring damping-ratio=1.125 stiffness=1000 epsilon=0.001
-    }
+animations { off; }
+
+window-rule {
+    geometry-corner-radius 4
+    clip-to-geometry true
 }
 
 // Floats
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id=r#"^steam$"#
+    match app-id=r#"^org.quickshell"# title="Popup"
 
     exclude app-id=r#"^steam$"# title=r#"^Steam$"#
     exclude app-id=r#"^steam$"# title=r#"^Friends List$"#
@@ -137,9 +114,10 @@ window-rule {
     exclude app-id=r#"^steam$"# title=r#"^Steam$"#
 
     block-out-from "screen-capture"
+
     border {
-        active-gradient from="#e97955" to="#d82d42" angle=135 relative-to="workspace-view"
-        inactive-color "#431b27"
+        active-color "#e46876"
+        inactive-color "#c4746e"
     }
 }
 

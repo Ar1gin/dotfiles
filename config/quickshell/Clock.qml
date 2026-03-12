@@ -1,35 +1,65 @@
+import Quickshell
 import QtQuick
 import QtQuick.Layouts
-import "components"
-import "config"
+import qs.config
+import qs.components
 
-RowLayout {
-    Rectangle {
-        color: Colors.background
-        border.width: Constants.borderHeight
-        border.color: color.lighter(1.25)
+ColumnLayout {
+    SystemClock {
+        id: clock
+        precision: SystemClock.Minutes
+    }
+    spacing: Constants.splitWidth
+    RowLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        PatternRect {
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-
-            property real mult: 1.0 / (24 * 3600)
-            implicitWidth: parseInt(parent.width * Time.secondsSinceMidnight * mult)
-
-            mainColor: Colors.clockBarNoonBorder
-            secondaryColor: Colors.clockBarNoon
-            borderWidth: Constants.borderHeight
-            patternSource: "../assets/pattern_day.png"
+        spacing: Constants.splitWidth
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            RowLayout {
+                anchors.fill: parent
+                spacing: Constants.splitWidth
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    // TODO: Show season symbolic
+                }
+                LabelText {
+                    Layout.fillHeight: true
+                    text: Qt.formatDate(clock.date, "dddd dd")
+                    horizontalAlignment: Text.AlignRight
+                }
+            }
         }
-        PText {
-            font: Constants.mainFont
-            color: Colors.clockText
-            text: Time.timeDisplay
-            anchors.fill: parent
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
+        LabelText {
+            Layout.fillHeight: true
+            text: "/"
+            color: Colors.foregroundDim
         }
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            RowLayout {
+                anchors.fill: parent
+                spacing: Constants.splitWidth
+                LabelText {
+                    Layout.fillHeight: true
+                    text: Qt.formatDateTime(clock.date, "hh:mm AP")
+                    horizontalAlignment: Text.AlignLeft
+                }
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    // TODO: Show daytime symbolic
+                }
+            }
+        }
+    }
+    ProgBar {
+        Layout.fillWidth: true
+        Layout.preferredHeight: Constants.splitWidth
+
+        value: (clock.seconds + 60 * (clock.minutes + 60 * clock.hours)) / (24 * 60 * 60)
     }
 }

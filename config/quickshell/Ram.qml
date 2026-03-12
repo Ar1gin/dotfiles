@@ -1,19 +1,20 @@
 pragma Singleton
+
 import Quickshell
 import Quickshell.Io
 import QtQuick
-import "config"
+import qs.config
 
-Item {
+Singleton {
     id: ram
 
     property int memTotal: 1
     property int memAvailable: 1
     property int swapTotal: 0
     property int swapUsed: 0
-    property real memUsage: 1.0 - ram.memAvailable / ram.memTotal
-    property real swapUsage: ram.swapTotal > 0 ? ram.swapUsed / ram.swapTotal : 0
-    property bool hasSwap: ram.swapTotal > 0
+    readonly property real memUsage: 1.0 - ram.memAvailable / ram.memTotal
+    readonly property real swapUsage: ram.swapTotal > 0 ? ram.swapUsed / ram.swapTotal : 0
+    readonly property bool hasSwap: ram.swapTotal > 0
 
     Process {
         id: memTotalCheckProc
@@ -50,7 +51,7 @@ Item {
     Timer {
         running: true
         repeat: true
-        interval: Constants.indicatorUpdateDelay
+        interval: Constants.updateDelay
         onTriggered: {
             memAvailableCheckProc.running = true;
             swapCheckProc.running = true;

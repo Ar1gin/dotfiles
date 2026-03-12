@@ -1,9 +1,11 @@
 pragma Singleton
+
+import Quickshell
 import Quickshell.Io
 import QtQuick
-import "config"
+import qs.config
 
-Item {
+Singleton {
     id: net
 
     property bool online: false
@@ -20,7 +22,7 @@ Item {
         }
     }
     Timer {
-        interval: Constants.alertUpdateDelay
+        interval: online ? (Constants.updateDelay * 30) : Constants.updateDelay
         running: true
         repeat: true
         onTriggered: {
