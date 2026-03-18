@@ -1,3 +1,7 @@
+local function copy(args)
+	return args[1]
+end
+
 return {
 	-- Lazy pasta
 	s("opt", t("@setFloatMode(.optimized);")),
@@ -21,11 +25,14 @@ return {
 	-- Syntax pasta
 	s({ trig = "pr", wordTrig = false }, { i(1), t(" => "), n(2, "|"), i(2), n(2, "| "), t("{"), i(3), t("},"), i(0) }),
 	s({ trig = "prb", wordTrig = false }, { i(1), t(" => "), n(2, "|"), i(2), n(2, "| "), t({ "{", "\t" }), i(3), t({ "", "}," }), i(0) }),
-	s("im", { t("const "), i(1), t(" = @import(\""), i(2), t("\");"), i(0), }),
+	s("im", { t("const "), i(1), t(" = @import(\""), dl(2, l._1, 1), t("\");"), i(0), }),
 	s("fn", { t("fn "), i(1), t("("), i(2), t(") "), i(3), t({ " {", "\t" }), i(4), t({ "", "}" }), i(0) }),
 	s("str", { t({ "struct {", "\t" }), i(1), t({ "", "}" }), i(0) }),
 	s("union", { t({ "union(" }), i(1), t({ ") {", "\t" }), i(2), t({ "", "}" }), i(0) }),
 	s("pself", { t({ "self: *Self" }), i(0) }),
 	s("cself", { t({ "self: Self" }), i(0) }),
 	s("dself", { t({ "const " }), i(1, "Self"), t({ " = @This();" }), i(0) }),
+	-- Misc
+	s("const", t("var")),
+	s("var", t("const")),
 }

@@ -1,19 +1,10 @@
 return {
 	-- Blocks
-	s({ trig = "ppb", wordTrig = false }, { t({ "(", "\t" }), i(1), t({ "", ")" }), i(0) }),
-	s({ trig = "ssb", wordTrig = false }, { t({ "[", "\t" }), i(1), t({ "", "]" }), i(0) }),
-	s({ trig = "bbb", wordTrig = false }, { t({ "{", "\t" }), i(1), t({ "", "}" }), i(0) }),
-	s({ trig = "aab", wordTrig = false }, { t({ "<", "\t" }), i(1), t({ "", ">" }), i(0) }),
-	-- Pairs
-	s({ trig = "pp", wordTrig = false }, { t("("), i(1), t(")"), i(0) }),
-	s({ trig = "ss", wordTrig = false }, { t("["), i(1), t("]"), i(0) }),
-	s({ trig = "bb", wordTrig = false }, { t("{"), i(1), t("}"), i(0) }),
-	s({ trig = "aa", wordTrig = false }, { t("<"), i(1), t(">"), i(0) }),
-	s({ trig = "qq", wordTrig = false }, { t("'"), i(1), t("'"), i(0) }),
-	s({ trig = "dd", wordTrig = false }, { t("\""), i(1), t("\""), i(0) }),
-	s({ trig = "co", wordTrig = false }, { t("```"), i(1), t({ "", "```" }), i(0) }),
-	-- Misc
-	s({ trig = "ca", wordTrig = false }, { t("("), i(1), t(");"), i(0) }),
+	s({ trig = "()", wordTrig = false }, { t({ "(", "\t" }), i(1), t({ "", ")" }), i(0) }),
+	s({ trig = "[]", wordTrig = false }, { t({ "[", "\t" }), i(1), t({ "", "]" }), i(0) }),
+	s({ trig = "{}", wordTrig = false }, { t({ "{", "\t" }), i(1), t({ "", "}" }), i(0) }),
+	s({ trig = "<>", wordTrig = false }, { t({ "<", "\t" }), i(1), t({ "", ">" }), i(0) }),
+	s({ trig = "```", wordTrig = false }, { t({"```"}), i(1), t({ "", "```" }), i(0) }),
 	-- Emoji
 	s(
 		{ trig = "emo%w+", regTrig = true },
