@@ -34,6 +34,8 @@ Singleton {
         Qt.color("#49443c"),
         Qt.color("#43242b"),
     ]
+
+    readonly property color none: "#00000000"
 }
 
 // fg         = palette.dragonWhite,

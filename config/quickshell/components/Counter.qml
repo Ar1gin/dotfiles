@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 import qs.config
 
 LabelText {
@@ -15,8 +14,6 @@ LabelText {
     color: background
     font: Constants.mainFont
 
-    fontSizeMode: Text.FixedSize
-
     LabelText {
         property int padSize: counter.preZeroes + ((counter.postZeroes > 0) ? (counter.postZeroes + 1) : 0)
         horizontalAlignment: counter.horizontalAlignment
@@ -27,6 +24,6 @@ LabelText {
         font: parent.font
         color: counter.foreground
 
-        fontSizeMode: Text.FixedSize
+        fontSizeMode: counter.fontSizeMode
     }
 }

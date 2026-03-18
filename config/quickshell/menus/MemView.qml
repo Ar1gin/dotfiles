@@ -7,7 +7,7 @@ import qs
 ViewRect {
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: parent.height * 0.125
+        anchors.margins: Constants.splitWidthLarge
         spacing: Constants.splitWidth
         LabelText {
             Layout.fillWidth: true

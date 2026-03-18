@@ -20,5 +20,6 @@ Item {
             colorizationColor: icon.color
         }
         opacity: icon.color.a
+        fillMode: Image.PreserveAspectFit
     }
 }

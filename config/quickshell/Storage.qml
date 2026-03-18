@@ -8,6 +8,9 @@ import qs.config
 Singleton {
     id: storage
     property var drives: []
+    property real usageRoot: 0
+    readonly property bool alert: usageRoot >= 0.80
+    readonly property bool critical: usageRoot >= 0.90
 
     Process {
         id: driveCheckProc
@@ -29,6 +32,10 @@ Singleton {
                 const used = parseInt(line[0]);
                 const size = parseInt(line[1]);
                 const target = line[2];
+
+                if(target == "/") {
+                    storage.usageRoot = used / size;
+                }
 
                 driveCheckProc.new_drives.push([target, used, size]);
             }

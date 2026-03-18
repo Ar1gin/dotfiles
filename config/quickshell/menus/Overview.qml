@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import qs.config
+import qs.components
 
 // TODO:
 // Battery health
@@ -16,42 +17,65 @@ import qs.config
 // System tray
 // Media player
 
-ColumnLayout {
-    spacing: Constants.splitWidth
-    anchors.margins: Constants.splitWidth
-    RowLayout {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.preferredHeight: 1
-        spacing: Constants.splitWidth
-        Repeater {
-            model: [
-                "applications-system-symbolic",
-                "network-connect-symbolic",
-                "library-music-symbolic",
-                "audio-symbolic",
-                "notifications",
-                "arrow-down",
-                "system-shutdown",
-            ]
-            Button {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                required property var modelData
-                required property var index
-                icon.source: Quickshell.iconPath(modelData)
+WindowRect {
+    id: wrect
+    ColumnLayout {
+        anchors.fill: parent
+        Keys.onPressed: event => {
+            if (event.key >= Qt.Key_1 && event.key <= Qt.Key_9) {
+                if (event.key - Qt.Key_1 >= stack.children.length)
+                    return;
+                stack.currentIndex = event.key - Qt.Key_1;
+            }
+        }
+        Keys.forwardTo: [stack.children[stack.currentIndex]]
+        focus: true
 
-                Component.onCompleted: {
-                    if (index == 0) {
-                        forceActiveFocus();
+        spacing: Constants.splitWidth
+        anchors.margins: Constants.splitWidth + wrect.border.width
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredHeight: 1
+            spacing: Constants.splitWidth
+            Repeater {
+                model: [
+                    "applications-system-symbolic",
+                    "notifications",
+                    "library-music-symbolic",
+                    "audio-symbolic",
+                    "network-connect-symbolic",
+                    "arrow-down",
+                    "system-shutdown",
+                ]
+                ViewRect {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    required property var modelData
+                    required property var index
+                    Icon {
+                        anchors.fill: parent
+                        anchors.margins: Constants.splitWidthLarge
+                        path: modelData
                     }
+                    border.color: stack.currentIndex == index ? Colors.foreground : Colors.foregroundDim
                 }
             }
         }
-    }
-    OverviewMain {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.preferredHeight: 8
+        StackLayout {
+            id: stack
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredHeight: 8
+            currentIndex: 0
+
+            OverviewMain {}
+            OverviewNotifications {}
+            OverviewMedia {}
+            ViewRect {}
+            ViewRect {}
+            ViewRect {}
+            ViewRect {}
+        }
     }
 }

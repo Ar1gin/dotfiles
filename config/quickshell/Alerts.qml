@@ -34,10 +34,11 @@ Item {
 
     property var alertList: [
         ["Offline", 2, !Net.online],
-        ["Battery Low", 2, Battery.alert],
-        ["Battery Critical", 3, !Battery.alert && Battery.critical],
-        ["Storage Low", 2, false],
-        ["Storage Critical", 3, false],
+        ["Battery Low", 2, Battery.alert && !Battery.critical],
+        ["Battery Critical", 3, Battery.critical],
+        ["Storage Low", 2, Storage.alert && !Storage.critical],
+        ["Storage Critical", 3, Storage.critical],
+        [`Recording: ${Audio.recording}`, 0, Audio.recording > 0],
     ];
     property var top1Alert: null
     property var top2Alert: null

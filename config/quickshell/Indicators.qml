@@ -26,7 +26,7 @@ RowLayout {
         Layout.maximumWidth: 96
         Layout.fillHeight: true
         icon: "drive-harddisk"
-        value: 0
+        value: Storage.usageRoot
         color: Colors.driveAccent
     }
     Indicator {

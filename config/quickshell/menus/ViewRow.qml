@@ -11,7 +11,7 @@ ViewRect {
     default property alias data: layout.children
     RowLayout {
         anchors.fill: parent
-        anchors.margins: parent.height * 0.125
+        anchors.margins: Constants.splitWidthLarge
         spacing: parent.height * 0.125
         CircleBarCounter {
             Layout.fillHeight: true

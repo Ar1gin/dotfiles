@@ -1,11 +1,19 @@
 import Quickshell
+import Quickshell.Wayland
 import QtQuick
 import qs.config
 
-FloatingWindow {
+PanelWindow {
     id: fwindow
-    title: "Popup"
+    // title: "Popup"
     visible: false
 
     property alias active: fwindow.visible
+
+    color: Colors.none
+    exclusionMode: ExclusionMode.Ignore
+    focusable: true
+
+    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.namespace: "overview"
 }

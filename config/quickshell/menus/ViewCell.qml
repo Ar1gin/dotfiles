@@ -13,7 +13,7 @@ ViewRect {
         id: layout
         anchors.fill: parent
 
-        anchors.margins: parent.height * 0.125
+        anchors.margins: Constants.splitWidthLarge
         spacing: Constants.splitWidth
         CircleBar {
             Layout.fillWidth: true
@@ -27,6 +27,8 @@ ViewRect {
             Counter {
                 value: cell.value * 100
                 anchors.fill: parent
+                anchors.leftMargin: parent.width * 0.125
+                anchors.rightMargin: parent.width * 0.125
                 font: Constants.largeFont
                 foreground: cell.foreground
             }

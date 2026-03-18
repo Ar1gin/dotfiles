@@ -12,11 +12,9 @@ Scope {
         id: overviewWindow
         implicitWidth: 1024
         implicitHeight: 768
-        color: Colors.background
         Overview {
             anchors.fill: parent
         }
-        visible: true
     }
     IpcHandler {
         target: "bar"

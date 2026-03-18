@@ -6,6 +6,20 @@ import qs.components
 import qs
 
 ViewCell {
+    Keys.onPressed: event => {
+        if(event.key == Qt.Key_Up) {
+            if(Cpu.hasPerformanceProfile && PowerProfiles.profile < PowerProfile.Performance) {
+                PowerProfiles.profile += 1;
+            }
+            if(!Cpu.hasPerformanceProfile && PowerProfiles.profile < PowerProfile.Balanced) {
+                PowerProfiles.profile += 1;
+            }
+        }
+        if(event.key == Qt.Key_Down && PowerProfiles.profile > PowerProfile.PowerSaver) {
+            PowerProfiles.profile -= 1;
+        }
+    }
+
     value: Cpu.usage
     foreground: Colors.cpuAccent
     ColumnLayout {
@@ -17,6 +31,12 @@ ViewCell {
             implicitWidth: height
             path: "battery-profile-performance"
             color: Cpu.profile == PowerProfile.Performance ? Colors.cpuAccent : Colors.dimmer
+            Icon {
+                visible: !Cpu.hasPerformanceProfile
+                anchors.fill: parent
+                path: "lock"
+                color: Colors.foregroundDim
+            }
         }
         Icon {
             Layout.fillHeight: true
@@ -32,6 +52,7 @@ ViewCell {
         }
     }
     VerticalText {
+        Layout.fillHeight: true
         label.text: ["Power Saver", "Balanced", "Performance"][Cpu.profile]
         label.color: Colors.foregroundDim
     }

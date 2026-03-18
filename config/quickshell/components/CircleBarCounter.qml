@@ -16,5 +16,6 @@ CircleBar {
         value: bar.value * 100
         foreground: bar.foreground
         font: Constants.largeFont
+        fontSizeMode: Text.FixedSize
     }
 }

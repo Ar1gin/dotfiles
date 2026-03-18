@@ -5,6 +5,7 @@ import qs.components
 import qs
 
 GridLayout {
+    Keys.forwardTo: [cpu]
     columns: 4
     rowSpacing: Constants.splitWidth
     columnSpacing: Constants.splitWidth
@@ -23,6 +24,7 @@ GridLayout {
         Layout.preferredWidth: 2
     }
     CpuView {
+        id: cpu
         Layout.fillWidth: true
         Layout.fillHeight: true
         Layout.preferredWidth: 1
