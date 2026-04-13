@@ -1,0 +1,33 @@
+default_language = "english10k"
+
+[theme]
+default = "none"
+
+border_type = "plain"
+
+title = "white;bold"
+
+input_border = "gray"
+prompt_border = "gray"
+
+prompt_correct = "green;bold"
+prompt_incorrect = "red;bold"
+prompt_untyped = "gray"
+
+prompt_current_correct = "green;bold"
+prompt_current_incorrect = "red;bold"
+prompt_current_untyped = "gray"
+
+prompt_cursor = "yellow;underlined"
+
+results_overview = "gray;bold"
+results_overview_border = "gray"
+
+results_worst_keys = "gray;bold"
+results_worst_keys_border = "gray"
+
+results_chart = "lightyellow"
+results_chart_x = "lightyellow"
+results_chart_y = "gray;italic"
+
+results_restart_prompt = "gray;italic"

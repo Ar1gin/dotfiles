@@ -15,6 +15,7 @@
 - Quickshell
 - Starship
 - Tmux
+- Ttyper
 ## Requirements
 
 ### General
